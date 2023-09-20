@@ -1,5 +1,5 @@
 # personal-finance-automation
-                                                                                                         
+![Finance Tree](https://github.com/sam-wright-1/personal-finance-automation/blob/main/lib/images/finance.jpg)                                                       
 Repo to set up automated finances.
 
 # Purpose
