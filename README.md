@@ -46,13 +46,21 @@
    5. Youll have to run the python script first to get a refresh token back, so you can run the script lib/scripts/google_sheets.py to get that.  A file called token.json should appear once that is done.
 5. Connect in Airbyte 
    1. Go to localhost:8000 and login to airbyte (airbyte, password)
-      - Create a connection with google sheets
+      - Create a source with google sheets
       - Input client id, secret, and refresh token that you received
       - If that doesnt work, you can try created a service account in Google Cloud
-      - Create a connection with Postgres using correct postgres creds.
+      - Create a destination with Postgres using correct postgres creds.
+      - Create a connection between google sheets and postgres with the sheets you want to sync.
+      - Make a note of the connectionid of the connection just created (can be found in the url) and use that in lib/scripts/airbyte.py for connectionId in the payload
 6. Connect in Superset
    1. Go to localhost:8088 and login (admin, admin)
    2. Create a new database connection (can do from settings on the top right)
    3. Connect with correct postgres creds
-7. 
+   4. Start creating datasets from tables in postgres (starting with your raw data)
+7. Run main.py 
+ 
+# NOTES:
+   - When doing these steps, the containers state should be running.
+   - Depending on how your data looks, you might have to do quite a few manual changes.
+   - lib/sql holds sql scripts to create tables in postgres, make sure those make sense to run in postgres once data in replicated to the postgres container through airbyte
 
