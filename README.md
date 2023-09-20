@@ -33,6 +33,10 @@
    3. docker compose up
    4. Go to localhost:8088 and use username:admin, password:admin
 3. Create Google Cloud Project
-   1. Create a service 
-
+   1. Enable Google Sheets API under APIs and Services
+   2. In the same spot (APIs and Services), under credentials, create OAuth 2.0 client credentials
+      - Basically just follow this https://developers.google.com/sheets/api/quickstart/python
+      - You'll have to donwload rename the .json credentials file as credentials.json
+   3. Put credentials in the cred folder under lib as credentials.json
+   4. You'll have to go to lib/
 
