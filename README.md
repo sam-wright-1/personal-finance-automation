@@ -33,12 +33,12 @@
    1. `git clone https://github.com/airbytehq/airbyte.git`
    2. `cd airbyte`
    3. `./run-ab-platform.sh`
-   4. Go to localhost:8000 and use username:airbyte, password:password
+   4. Go to localhost:8000 in your browser and use username:airbyte, password:password
 2. Clone Superset repo into this repo (from https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/)
    1. `git clone https://github.com/apache/superset.git`
    2. `cd superset`
    3. `docker compose up`
-   4. Go to localhost:8088 and use username:admin, password:admin
+   4. Go to localhost:8088 in your browser and use username:admin, password:admin
 3. Create Postgres Container
    - `cd postgres`
    - `docker build -t personal_finance_postgres ./` (creates the docker image based on the Dockerfile in that folder)
@@ -55,7 +55,7 @@
 6. Modifications
    1. Any data you want to import should go into lib/imports as csv files
    2. Modify lib/scripts/google_sheets.py to include the id of the google sheet you want to use (which can be found in the url of the sheet), as well as the range of the sheet.  Also change any transformations in that file or lib/scripts/transform.py to whatever you need
-   3. Make sure that all of the correct packages are installed.  (run pip install -r requirements.txt when in parent directory)
+   3. Make sure that all of the correct packages are installed.  (run `pip install -r requirements.txt` when in parent directory)
    5. Youll have to run the python script first to get a refresh token back, so you can run the script lib/scripts/google_sheets.py to get that.  A file called token.json should appear once that is done.
 7. Connect in Airbyte 
    1. Go to localhost:8000 and login to airbyte (airbyte, password)
