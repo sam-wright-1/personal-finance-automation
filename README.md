@@ -14,6 +14,7 @@
 ![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/lib/images/financial_snapshot.png)
 
 # Requirements
+* Python Installation
 * Docker Installation
 * Google Cloud Project
 * Coding Basics
@@ -36,7 +37,22 @@
    1. Enable Google Sheets API under APIs and Services
    2. In the same spot (APIs and Services), under credentials, create OAuth 2.0 client credentials
       - Basically just follow this https://developers.google.com/sheets/api/quickstart/python
-      - You'll have to donwload rename the .json credentials file as credentials.json
-   3. Put credentials in the cred folder under lib as credentials.json
-   4. You'll have to go to lib/
+      - You'll have to donwload and rename the .json credentials file as credentials.json
+      - Put credentials in lib/creds as credentials.json
+4. Modifications
+   1. Any data you want to import should go into lib/imports as csv files
+   2. Modify lib/scripts/google_sheets.py to include the id of the google sheet you want to use, as well as the range of the sheet.  Also change any transformations in that file or lib/scripts/transform.py to whatever you need
+   3. Make sure that all of the correct packages are installed.  (run pip install -r requirements.txt when in parent directory)
+   5. Youll have to run the python script first to get a refresh token back, so you can run the script lib/scripts/google_sheets.py to get that.  A file called token.json should appear once that is done.
+5. Connect in Airbyte 
+   1. Go to localhost:8000 and login to airbyte (airbyte, password)
+      - Create a connection with google sheets
+      - Input client id, secret, and refresh token that you received
+      - If that doesnt work, you can try created a service account in Google Cloud
+      - Create a connection with Postgres using correct postgres creds.
+6. Connect in Superset
+   1. Go to localhost:8088 and login (admin, admin)
+   2. Create a new database connection (can do from settings on the top right)
+   3. Connect with correct postgres creds
+7. 
 
