@@ -43,7 +43,7 @@
    - `cd postgres`
    - `docker build -t personal_finance_postgres ./` (creates the docker image based on the Dockerfile in that folder)
    - `docker run -d --name personal_finance_postgres -p 5432:5432 personal_finance_postgres` (creates the container with the image you created)
-   - Those commands will start the container up, but if you need to stop it or run it, you can use docker desktop or use docker commands (like docker run CONTAINER_NAME or docker stop CONTAINER_NAME)
+   - Those commands will start the container up, but if you need to stop it or run it, you can use docker desktop or use docker commands (like `docker run CONTAINER_NAM`E or `docker stop CONTAINER_NAME`)
 4. Create Google Sheet for Personal Finance
    - This is just to house all of your data.  You can look at my google sheet image to get an idea of what columns I included in mine.  (lib/images/sheet_image.png)
 5. Create Google Cloud Project
