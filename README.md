@@ -82,4 +82,4 @@
    - When doing these steps, the containers state should be running.
    - Depending on how your data looks, you might have to do quite a few manual changes.
    - lib/sql holds sql scripts to create tables in postgres, make sure those make sense to run in postgres once data in replicated to the postgres container through airbyte
-
+   - Dont flame me for not doing linting, formatting, tests, pdm, containerizing python, etc. i just did this quick and dirty
