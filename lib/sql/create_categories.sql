@@ -1,6 +1,6 @@
-drop table if exists finance.categories;
+drop table if exists public.categories;
 
-create table finance.categories
+create table public.categories
 as
 SELECT 
   master.type
@@ -325,5 +325,5 @@ SELECT
     ELSE 'Unknown'
   END AS transaction_category
 
-FROM finance.master_join as master -- This is uploaded
+FROM public.master_join as master -- This is uploaded
 ;

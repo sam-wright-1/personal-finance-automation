@@ -1,6 +1,6 @@
-drop table if exists finance.sum_category;
+drop table if exists public.sum_category;
 
-create table finance.sum_category
+create table public.sum_category
 as
 
 select 
@@ -10,7 +10,7 @@ SUM(amount) as total
 , month
 , year
 
-from finance.categories
+from public.categories
 group by 
     month
     , year
