@@ -34,7 +34,7 @@
 # Solution Architecture
 ![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/lib/images/finance_architecture.png)
 
-# Steps to create solution
+# Steps to Create Solution
 1. Clone Airbyte repo into this repo (from https://docs.airbyte.com/quickstart/deploy-airbyte/)
    1. `git clone https://github.com/airbytehq/airbyte.git`
    2. `cd airbyte`
