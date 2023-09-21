@@ -8,22 +8,24 @@
 # Benefit
 #### At the end of this guide you will have created:
 * A dashboard that will show you personal monthly spend totals, averages, and anything else you need to answer your basic financial questions.
-* An easy way to update your financial data within one or two minutes.
+* An easy way to update your financial data (takes ~ 1 or 2 minutes).
 * Your own basic data engineering project.
 
 ![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/lib/images/financial_snapshot.png)
 
-# Explaination
-* You will use Google Sheets as your base for your financial data (i.e. your raw data should live here)
-* lib/scripts/google_sheets.py takes the data provided by you (exported from financial sources) and imports it into a google sheet (with deduplication handled)
-* lib/scripts/transform.py is used by lib/scripts/google_sheets.py and transforms the data that you provide in the imports folder.  You will most likely have to change this.
-* lib/sql hold all of the sql transformations used to take the raw data that is imported into postgres through Airbyte and turn it into something that Superset can use.  It also categorizes your spend by description.
-* lib/scripts/airbyte basically is just run when you want to replicate data from google sheets to postgres
-* lib/scripts/run_sql_in_python.py is used to run the scripts in lib/sql in the postgres container
-* lib/main.py puts everything together (takes data from lib/import, compares it to google sheets, inserts data into google sheets, then runs airbyte to push that data to postgres, then runs the sql commands in postgres to transform the data).
-* lib/creds holds credentials to access google sheets through python
-* postgres holds dockerfile for postgres container
-* Data in Postgres is then used in Superset to create financial dashboard.
+# Birds Eye View
+Google Sheets is used as your main data storage system by putting transformed financial data into a master sheet.  You will export data from your financial sources and use the python scripts within the project to transform the data and upload it into Goole Sheets.  We then use Airbyte to take that transformed data from Google Sheets and put it into Postgres for analysis, transformations, and connection with Superset (our BI tool to create graphs of the data).  Superset takes the transformed data from postgres and creates graphs and charts for quick and easy insights.
+
+# Explainations
+* `lib/imports` holds data that you export from your financial sources.  This data will be transformed and put into google sheets.
+* `lib/scripts/google_sheets.py` takes the data provided by you (exported from financial sources) and imports it into a google sheet (with deduplication handled)
+* `lib/scripts/transform.py` is used by lib/scripts/google_sheets.py and transforms the data that you provide in the imports folder.  You will most likely have to change this.
+* `lib/sql` holds all of the sql transformations used to take the raw data that is imported into postgres through Airbyte and turn it into something that Superset can use.  It also categorizes your spend by description.
+* `lib/scripts/airbyte` basically is just run when you want to replicate data from google sheets to postgres
+* `lib/scripts/run_sql_in_python.py` is used to run the scripts in lib/sql in the postgres container
+* `lib/main.py` puts everything together (takes data from lib/import, compares it to google sheets, inserts data into google sheets, then runs airbyte to push that data to postgres, then runs the sql commands in postgres to transform the data).
+* `lib/cred`s holds credentials to access google sheets through python
+* `postgres` holds dockerfile for postgres container
 
 # Requirements
 * Python Installation
