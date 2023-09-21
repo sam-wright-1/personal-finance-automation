@@ -35,12 +35,12 @@
 ![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/lib/images/finance_architecture.png)
 
 # Steps to Create Solution
-1. Clone Airbyte repo into this repo (from https://docs.airbyte.com/quickstart/deploy-airbyte/)
+1. Clone Airbyte into this repo (from https://docs.airbyte.com/quickstart/deploy-airbyte/)
    1. `git clone https://github.com/airbytehq/airbyte.git`
    2. `cd airbyte`
    3. `./run-ab-platform.sh`
    4. Go to localhost:8000 in your browser and use username:airbyte, password:password
-2. Clone Superset repo into this repo (from https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/)
+2. Clone Superset into this repo (from https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/)
    1. `git clone https://github.com/apache/superset.git`
    2. `cd superset`
    3. `docker compose up`
