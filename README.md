@@ -33,7 +33,7 @@ Google Sheets is used as your main data storage system by putting transformed fi
 * Coding Basics
 
 # Solution Architecture
-![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/lib/images/finance_architecture.png)
+![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/lib/images/finance_architecture_diagram.png)
 
 # Steps to Create Solution
 1. Clone Airbyte into this repo (from https://docs.airbyte.com/quickstart/deploy-airbyte/)
