@@ -315,8 +315,6 @@ SELECT
             OR UPPER(master.description) LIKE '%COSTCO COM%'  
     THEN 'Web Purchase'
     WHEN UPPER(master.description) LIKE 'ONLINE PAYMENT, THANK YOU%'
-            OR UPPER(master.description) LIKE 'CITI CARD ONLINE PAYMENT%'
-            OR UPPER(master.description) LIKE 'CITI AUTOPAY PAYMENT%'
             OR UPPER(master.description) LIKE 'ONLINE TRANSFER TO WRIGHT%'
             OR UPPER(master.description) LIKE 'ONLINE TRANSFER FROM WRIGHT%'
             OR UPPER(master.description) LIKE 'AUTOPAY 211%'
