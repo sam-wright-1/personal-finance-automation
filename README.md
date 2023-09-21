@@ -14,8 +14,7 @@
 ![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/lib/images/financial_snapshot.png)
 
 # Birds Eye View
-Google Sheets is used as your main data storage system by putting transformed financial data into a master sheet.  You will export data from your financial sources and use the python scripts within the project to transform the data and upload it into Goole Sheets.  We then use Airbyte to take that transformed data from Google Sheets and put it into Postgres for analysis, transformations, and connection with Superset (our BI tool to create graphs of the data).  Superset takes the transformed data from postgres and creates graphs and charts for quick and easy insights.
-
+Google Sheets is used as your main data storage system by putting transformed financial data into a master sheet.  You will export data from your financial sources and use the python scripts within the project to transform the data and upload it into Goole Sheets.  You then will use Airbyte to take that transformed data from Google Sheets and put it into Postgres for analysis, transformations, and connection with Superset (our BI tool to create graphs of the data).  Superset takes the transformed data from postgres and creates graphs and charts for quick and easy insights.
 # Explainations
 * `lib/imports` holds data that you export from your financial sources.  This data will be transformed and put into google sheets.
 * `lib/scripts/google_sheets.py` takes the data provided by you (exported from financial sources) and imports it into a google sheet (with deduplication handled)
