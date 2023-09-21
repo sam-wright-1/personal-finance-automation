@@ -23,7 +23,7 @@ Google Sheets is used as your main data storage system by putting transformed fi
 * `lib/scripts/airbyte` basically is just run when you want to replicate data from google sheets to postgres
 * `lib/scripts/run_sql_in_python.py` is used to run the scripts in lib/sql in the postgres container
 * `lib/main.py` puts everything together (takes data from lib/import, compares it to google sheets, inserts data into google sheets, then runs airbyte to push that data to postgres, then runs the sql commands in postgres to transform the data).
-* `lib/cred`s holds credentials to access google sheets through python
+* `lib/creds` holds credentials to access google sheets through python
 * `postgres` holds dockerfile for postgres container
 
 # Requirements
