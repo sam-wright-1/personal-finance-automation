@@ -1,6 +1,6 @@
 from scripts.google_sheets import google_sheets_upload
 from scripts.airbyte import airbyte
-from scripts.run_sql_in_python import run_sql_w_python
+from scripts.postgres_sql import run_sql_statements
 # from scripts.docker_run_sql import run_sql
 
 def main():
@@ -12,8 +12,8 @@ def main():
         # Runs airbyte sync between google sheets and postgres
         airbyte()
         
-        # Runs sql statements connecting to the postgres container
-        run_sql_w_python()
+        # Runs sql statements in the postgres container
+        run_sql_statements()
         
         print("Process Completed")
         
