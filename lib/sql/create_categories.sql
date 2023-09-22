@@ -324,4 +324,6 @@ SELECT
   END AS transaction_category
 
 FROM public.master_join as master -- This is uploaded
-;
+
+ORDER BY 
+    master.date ASC;
