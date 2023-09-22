@@ -99,11 +99,10 @@ def google_sheets_upload():
         # Exclude rows that are in df2
         excluded_df = merged_df[merged_df["_merge"] == "right_only"]
         # Drop the indicator column
-        excluded_df = excluded_df.drop(columns=["_merge", "Notes"])
+        excluded_df = excluded_df.drop(columns=["_merge", "Notes"]).sort_values(by=['Date'], ascending=True)
 
-        length_excluded = len(excluded_df)
-
-        print(f" Inserting {length_excluded} rows.")
+        # Execute google sheet update
+        print(f" Inserting {len(excluded_df)} rows.")
         new_list = excluded_df.values.tolist()
         update_values = sheet.values().update(
             spreadsheetId=SAMPLE_SPREADSHEET_ID,
