@@ -13,7 +13,7 @@ parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 sql_scripts = ["create_master_join.sql","create_categories.sql", "create_sum_category.sql"]
 
-def run_sql_w_python():
+def run_sql_statements():
     """Running sql statements with psychopg2"""
 
     # Establish a database connection
