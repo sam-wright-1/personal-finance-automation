@@ -28,7 +28,6 @@ Google Sheets is used as your main data storage system by putting transformed fi
 * `Dockerfile` used to create the python container to run `main.py` (easy to build and run by using docker build and docker run without having to setup your own python env)
 
 # Requirements
-* Python Installation
 * Docker Installation
 * Google Cloud Project
 * Coding Basics
