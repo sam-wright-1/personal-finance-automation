@@ -25,6 +25,7 @@ Google Sheets is used as your main data storage system by putting transformed fi
 * `lib/main.py` puts everything together (takes data from lib/import, compares it to google sheets, inserts data into google sheets, then runs airbyte to push that data to postgres, then runs the sql commands in postgres to transform the data).
 * `lib/creds` holds credentials to access google sheets through python
 * `postgres` holds dockerfile for postgres container
+* `Dockerfile` used to create the python container to run `main.py` (easy to build and run by using docker build and docker run without having to setup your own python env)
 
 # Requirements
 * Python Installation
@@ -50,7 +51,7 @@ Google Sheets is used as your main data storage system by putting transformed fi
    - `cd postgres`
    - `docker build -t personal_finance_postgres ./` (creates the docker image based on the Dockerfile in that folder)
    - `docker run -d --name personal_finance_postgres -p 5432:5432 personal_finance_postgres` (creates the container with the image you created)
-   - Those commands will start the container up, but if you need to stop it or run it, you can use docker desktop or use docker commands (like `docker run CONTAINER_NAM`E or `docker stop CONTAINER_NAME`)
+   - Those commands will start the container up, but if you need to stop it or run it, you can use docker desktop or use docker commands (like `docker run CONTAINER_NAME` or `docker stop CONTAINER_NAME`)
 4. Create Google Sheet for Personal Finance
    - This is just to house all of your data.  You can look at my google sheet image to get an idea of what columns I included in mine.  (lib/images/sheet_image.png)
 5. Create Google Cloud Project
@@ -77,7 +78,9 @@ Google Sheets is used as your main data storage system by putting transformed fi
     2. Create a new database connection (can do from settings on the top right)
     3. Connect with correct postgres creds
     4. Start creating datasets from tables in postgres (starting with your raw data)
-9. Run `main.py`
+9. Create Python Container
+    1. Run `docker build -t python_container_image .` while in the top level directory to build your python image
+    2. Run `docker run --rm -it --network host python_container_image` to build the container and run `main.py` at the same time which should trigger the whole pipeline (and delete the container afterward).
  
 # NOTES:
    - When doing these steps, the containers state should be running.
