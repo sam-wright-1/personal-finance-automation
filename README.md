@@ -80,6 +80,7 @@ Google Sheets is used as your main data storage system by putting transformed fi
 9. Create Python Container
     1. Run `docker build -t python_container_image .` while in the top level directory to build your python image
     2. Run `docker run --rm -it --network host python_container_image` to build the container and run `main.py` at the same time which should trigger the whole pipeline (and delete the container afterward).
+    3. You can run this as well for a container that doesnt delete afterwards `docker run -d --name python_main python_container_image`
  
 # NOTES:
    - When doing these steps, the containers state should be running.
