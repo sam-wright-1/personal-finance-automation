@@ -32,9 +32,7 @@ HEADERS = [
 
 
 def google_sheets_upload():
-    """Shows basic usage of the Sheets API.
-    Prints values from a sample spreadsheet.
-    """
+    """Shows basic usage of the Sheets API. Prints values from a sample spreadsheet."""
     
     parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
     
@@ -115,3 +113,6 @@ def google_sheets_upload():
         print('Google Sheets have been updated')
     except HttpError as err:
         print(err)
+        
+if __name__ == "__main__":
+    google_sheets_upload()

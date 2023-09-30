@@ -3,10 +3,10 @@ import psycopg2
 
 # Database connection parameters
 db_params = {
-    "host": "localhost",
+    "host": "finance_automation_database",
     "user": "postgres",
     "password": "postgres",
-    "dbname": "finance"
+    "dbname": "personal_finance"
 }
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))

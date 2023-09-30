@@ -1,6 +1,6 @@
-drop table if exists public.categories;
+drop table if exists personal_finance.my_finances.categories;
 
-create table public.categories
+create table personal_finance.my_finances.categories
 as
 SELECT 
   master.type
@@ -323,7 +323,7 @@ SELECT
     ELSE 'Unknown'
   END AS transaction_category
 
-FROM public.master_join as master -- This is uploaded
+FROM personal_finance.my_finances.master_join as master -- This is uploaded
 
 ORDER BY 
     master.date ASC;

@@ -1,6 +1,6 @@
-drop table if exists public.master_join;
+drop table if exists personal_finance.my_finances.master_join;
 
-create table public.master_join
+create table personal_finance.my_finances.master_join;
 as
 SELECT 
     "Type" as type
@@ -13,7 +13,7 @@ SELECT
     , "Day" as day
     , Flow as flow
 
-FROM public."raw_data_2021"
+FROM personal_finance.my_finances."raw_data_2021"
 
 UNION ALL -- 2021 has 2 duplicate rows (both airline tickets)
 
@@ -28,7 +28,7 @@ SELECT
     , "Day" as day
     , Flow as flow
 
-FROM public."raw_data_2022"
+FROM personal_finance.my_finances."raw_data_2022"
 
 UNION ALL
 
@@ -43,4 +43,4 @@ SELECT
     , "Day" as day
     , Flow as flow
 
-FROM public."raw_data_2023";
+FROM personal_finance.my_finances."raw_data_2023";

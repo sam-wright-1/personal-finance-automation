@@ -1,0 +1,40 @@
+version: '3.7'
+
+services:
+  python_main:
+    image: python_container_image
+    build:
+      context: .
+      dockerfile: lib/docker/Dockerfile
+    networks:
+      - backend
+      - my_custom_network
+    depends_on:
+      - postgres_finance
+
+  postgres_finance:
+    image: postgres:15
+    build:
+      context: .
+      dockerfile: postgres/Dockerfile
+    container_name: finance_automation_database
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: personal_finance
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - backend
+
+volumes:
+  postgres-data:
+
+networks:
+  backend:
+    driver: bridge
+  my_custom_network:
+    external: true
