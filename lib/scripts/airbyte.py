@@ -5,7 +5,7 @@ import requests
 
 def airbyte():
     """Generate airbyte sync"""
-    url = "http://localhost:8000/api/v1/connections/sync"
+    url = "http://airbyte-proxy:8000/api/v1/connections/sync"
 
     sample_string = "airbyte:password"
     sample_string_bytes = sample_string.encode("ascii")
