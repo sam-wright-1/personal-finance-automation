@@ -35,7 +35,7 @@ Google Sheets is used as your main data storage system by putting transformed fi
 # Solution Architecture
 ![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/lib/images/finance_architecture_diagram.png)
 
-# Steps to Create Solution
+# Steps to Create Solution (ALERT: THESE CHANGED AS OF 2023-9-30, new instructions to come)
 1. Clone Airbyte into this repo (from https://docs.airbyte.com/quickstart/deploy-airbyte/)
    1. `git clone https://github.com/airbytehq/airbyte.git`
    2. `cd airbyte`
