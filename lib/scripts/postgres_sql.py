@@ -6,12 +6,17 @@ db_params = {
     "host": "finance_automation_database",
     "user": "postgres",
     "password": "postgres",
-    "dbname": "personal_finance"
+    "dbname": "personal_finance",
 }
 
 parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
-sql_scripts = ["create_master_join.sql","create_categories.sql", "create_sum_category.sql"]
+sql_scripts = [
+    "create_master_join.sql",
+    "create_categories.sql",
+    "create_sum_category.sql",
+]
+
 
 def run_sql_statements():
     """Running sql statements with psychopg2"""
@@ -21,7 +26,6 @@ def run_sql_statements():
 
     # Create a cursor
     cur = conn.cursor()
-    
 
     # Loop through each script file and execute its contents
     for script_file in sql_scripts:
@@ -33,9 +37,11 @@ def run_sql_statements():
             cur.execute(sql_commands)
 
             conn.commit()  # Commit after each script execution
-            
-            print(f"Table {script_file.replace('create_', '').replace('.sql', '')} created")
-            
+
+            print(
+                f"Table {script_file.replace('create_', '').replace('.sql', '')} created"
+            )
+
         except psycopg2.DatabaseError as err:
             conn.rollback()
             print("Error creating table:", err)

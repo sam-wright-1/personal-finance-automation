@@ -1,5 +1,5 @@
 # personal-finance-automation
-![Finance Tree](https://github.com/sam-wright-1/personal-finance-automation/blob/main/lib/images/finance.jpg)                                                       
+![Finance Tree](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/finance.jpg)                                                       
 
 # Purpose
 * The purpose of this repo is to help users create a free, semi-automated financial system with code.
@@ -11,7 +11,7 @@
 * An easy way to update your financial data (takes ~ 1 or 2 minutes).
 * Your own basic data engineering project.
 
-![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/lib/images/financial_snapshot.png)
+![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/financial_snapshot.png)
 
 # Birds Eye View
 Google Sheets is used as your main data storage system by putting transformed financial data into a master sheet.  You will export data from your financial sources and use the python scripts within the project to transform the data and upload it into Goole Sheets.  You then will use Airbyte to take that transformed data from Google Sheets and put it into Postgres for analysis, transformations, and connection with Superset (our BI tool to create graphs of the data).  Superset takes the transformed data from postgres and creates graphs and charts for quick and easy insights.
@@ -33,7 +33,7 @@ Google Sheets is used as your main data storage system by putting transformed fi
 * Coding Basics
 
 # Solution Architecture
-![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/lib/images/finance_architecture_diagram.png)
+![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/finance_architecture_diagram.png)
 
 # Steps to Create Solution (ALERT: THESE CHANGED AS OF 2023-9-30, new instructions to come)
 1. Clone Airbyte into this repo (from https://docs.airbyte.com/quickstart/deploy-airbyte/)
