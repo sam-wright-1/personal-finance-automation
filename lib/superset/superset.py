@@ -17,8 +17,8 @@ class Superset:
     def __init__(self):
         self.session = requests.Session()
         self.login()
-        self.username = os.environ["SUPERUSER"]
-        self.password = os.environ["SUPERPASS"]
+        self.username = os.environ["SUPERSET_USER"]
+        self.password = os.environ["SUPERSET_PASS"]
 
     def login(self):
         """Login to superset"""

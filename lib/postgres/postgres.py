@@ -11,21 +11,23 @@ class Postgres:
     def __init__(self):
         self.conn = None
 
-        self.username = os.environ["POSTUSER"]
-        self.password = os.environ["POSTPASS"]
-        self.db_name = os.environ["DB_NAME"]
-        self.host = os.environ["HOST"]
+        self.username = os.environ["POSTGRES_USER"]
+        self.password = os.environ["POSTGRES_PASSWORD"]
+        self.db_name = os.environ["POSTGRES_DB"]
+        self.host = os.environ["POSTGRES_HOST"]
+        self.port = os.environ["POSTGRES_PORT"]
 
         self.db_params = {
             "host": self.host,
             "user": self.username,
             "password": self.password,
             "dbname": self.db_name,
+            "port": self.port
         }
 
     def connect(self):
         """Establish a connection with psycopg2"""
-        self.conn = psycopg2.connect(self.db_params)
+        self.conn = psycopg2.connect(**self.db_params)
         return self.conn
 
     def query(self, query):

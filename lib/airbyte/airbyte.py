@@ -11,15 +11,14 @@ class Airbyte:
     """Class for airbyte connection"""
 
     def __init__(self):
-        self.host = os.environ["AIRHOST"]
-        self.username = os.environ["AIRUSER"]
-        self.password = os.environ["AIRPASS"]
+        self.host = os.environ["AIRBYTE_HOST"]
+        self.username = os.environ["AIRBYTE_USER"]
+        self.password = os.environ["AIRBYTE_PASSWORD"]
         self.header = self.set_header()
         self.payload = self.set_payload()
 
     def set_header(self):
         """Header info"""
-
         sample_string = self.username + ":" + self.password
         sample_string_bytes = sample_string.encode("ascii")
         base64_bytes = base64.b64encode(sample_string_bytes)
@@ -52,9 +51,9 @@ class Airbyte:
 
     def trigger_sync(self):
         """Trigger job sync"""
-        url = f"http://{host}:8000/api/v1/connections/sync"
+        url = f"http://{self.host}:8000/api/v1/connections/sync"
 
-        airbyte_request = requests.post(url, json=payload, headers=headers)
+        airbyte_request = requests.post(url, json=self.payload, headers=self.header)
 
         if airbyte_request.status_code == 200:
             logging.info("Data replication started")
