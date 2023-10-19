@@ -1,6 +1,6 @@
-from scripts.google_sheets import google_sheets_upload
-from scripts.airbyte import airbyte
-from scripts.postgres_sql import run_sql_statements
+# from scripts.google_sheets import google_sheets_upload
+# from scripts.airbyte import airbyte
+# from scripts.postgres_sql import run_sql_statements
 
 # from scripts.docker_run_sql import run_sql
 
@@ -21,7 +21,6 @@ def main():
 
     except Exception as err:
         print("Something went wrong", err)
-
 
 if __name__ == "__main__":
     main()

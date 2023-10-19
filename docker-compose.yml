@@ -24,7 +24,7 @@ services:
     depends_on:
       - postgres_finance
     volumes:
-      - ./:/lib
+      - ./lib:/finance_app
 
   postgres_finance:
     image: postgres:15

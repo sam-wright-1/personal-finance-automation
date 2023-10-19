@@ -1,4 +1,3 @@
 #!/bin/bash
 
-# Start your Python script when you're ready
-python main.py
+echo "Welcome to your customized personal finance system!"
