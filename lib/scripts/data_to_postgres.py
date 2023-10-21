@@ -1,7 +1,6 @@
-import psycopg2
 import pandas as pd
+import psycopg2
 from sqlalchemy import create_engine
-
 
 conn_string = "postgres://user:password@host/data1"
 

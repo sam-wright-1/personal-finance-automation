@@ -1,9 +1,10 @@
 """Airbyte Class"""
 
-import os
-import time
 import base64
 import logging
+import os
+import time
+
 import requests
 
 

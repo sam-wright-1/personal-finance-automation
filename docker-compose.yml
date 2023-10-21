@@ -18,13 +18,14 @@ services:
       POSTGRES_HOST: ${POSTGRES_HOST}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PYTHONPATH: ${PYTHONPATH}
     networks:
       - backend
       - my_custom_network
     depends_on:
       - postgres_finance
     volumes:
-      - ./lib:/finance_app
+      - ./lib:/finance_app/lib
 
   postgres_finance:
     image: postgres:15
