@@ -4,7 +4,6 @@ import base64
 import logging
 import os
 import time
-
 import requests
 
 
@@ -67,9 +66,9 @@ class Airbyte:
         """Get job sync status"""
 
         url = f"https://api.airbyte.com/v1/jobs/{job_id}"
-
+        ready = False
         while ready == False:
-            response = requests.get(url, headers=self.headers)
+            response = requests.get(url, headers=self.header, timeout=30)
             if response.status_code == 200:
                 return True
             else:
@@ -82,7 +81,7 @@ class Airbyte:
         )
 
         try:
-            response = requests.get(url, headers=self.headers)
+            response = requests.get(url, headers=self.header)
             if response.status_code == 200:
                 return response
             else:

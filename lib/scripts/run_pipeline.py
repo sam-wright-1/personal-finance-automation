@@ -2,23 +2,30 @@
 import logging
 import os
 import sys
+from datetime import date
 
-from lib.scripts.transform import transform_financial_data
+
+from lib.s3.s3 import S3Object
+from lib.data.data_source import DataSource
 from lib.postgres.postgres import Postgres
-
 
 
 def main():
     """Run processes"""
+    checking_list = ["Date", "Amount", "nothing", "nothing2", "Description"]
+    checking_source = DataSource('CHECKING.csv', checking_list, False)
+    
     try:
-        # Takes imports, transforms imports, takes google sheets existing data, dedups
-        new_data = transform_financial_data()
-
-        print(Postgres().connect().query("select 'test';"))
+        S3Object().send_data_to_s3(checking_source.path, 'personal-finance-imports', str(date.today()) + "-" + checking_source.file_name)
         
     except Exception as err:
-        logging.info("Something went wrong. %s", err)
+        logging.error("Something went wrong. %s", err)
 
-    print('got here')
 if __name__ == "__main__":
     main()
+
+
+
+
+# # Takes imports, transforms imports, takes google sheets existing data, dedups
+# checking_dataset = DataSource('CHECKING.csv', ["Date", "Amount", "nothing", "nothing2", "Description"], False).read_spend_file()

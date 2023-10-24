@@ -5,3 +5,7 @@ __pycache__/
 
 # .env file
 .env
+
+# only have these locally
+credentials.json
+token.json

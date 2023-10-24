@@ -15,7 +15,7 @@ SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 SAMPLE_SPREADSHEET_ID = ""
 SAMPLE_RANGE_NAME = "sheetname!A1:Z"
 
-# Column Headers
+# Google Sheet Headers
 HEADERS = [
     "Type",
     "Date",
