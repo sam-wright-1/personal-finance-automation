@@ -8,16 +8,16 @@ services:
       context: .
       dockerfile: lib/docker/Dockerfile
     environment:
-      AIRBYTE_USER: ${AIRBYTE_USER}
-      AIRBYTE_PASSWORD: ${AIRBYTE_PASSWORD}
-      AIRBYTE_HOST: ${AIRBYTE_HOST}
-      SUPERSET_HOST: ${SUPERSET_HOST}
-      SUPERSET_USER: ${SUPERSET_USER}
-      SUPERSET_PASSWORD: ${SUPERSET_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_HOST: ${POSTGRES_HOST}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      AIRBYTE_USER: ${AIRBYTE_USER:-airbyte}
+      AIRBYTE_PASSWORD: ${AIRBYTE_PASSWORD:-password}
+      AIRBYTE_HOST: ${AIRBYTE_HOST:-localhost:8000}
+      SUPERSET_HOST: ${SUPERSET_HOST:-localhost:8088}
+      SUPERSET_USER: ${SUPERSET_USER:-admin}
+      SUPERSET_PASSWORD: ${SUPERSET_PASSWORD:-admin}
+      POSTGRES_DB: ${POSTGRES_DB:-personal_finance}
+      POSTGRES_HOST: ${POSTGRES_HOST:-localhost:6543}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
@@ -37,9 +37,9 @@ services:
       dockerfile: lib/postgres/Dockerfile
     container_name: personal_finance_database
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-personal_finance}
     ports:
       - "6543:5432"
     volumes:

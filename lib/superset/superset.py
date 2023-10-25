@@ -2,7 +2,9 @@
 
 import logging
 import os
+
 import requests
+
 
 class Superset:
     """Class for Superset Interactions"""

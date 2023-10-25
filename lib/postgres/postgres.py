@@ -2,6 +2,7 @@
 
 import logging
 import os
+
 import psycopg2
 from sqlalchemy import create_engine
 
@@ -17,7 +18,9 @@ class Postgres:
         self.db_name = os.environ["POSTGRES_DB"]
         self.host = os.environ["POSTGRES_HOST"]
         self.port = os.environ["POSTGRES_PORT"]
-        self.db_url = f"postgresql://{self.username}:{self.password}@{self.host}/{self.db_name}"
+        self.db_url = (
+            f"postgresql://{self.username}:{self.password}@{self.host}/{self.db_name}"
+        )
 
         self.db_params = {
             "host": self.host,
@@ -31,12 +34,12 @@ class Postgres:
         """Establish a connection with psycopg2"""
         self.conn = psycopg2.connect(**self.db_params)
         return self.conn
-    
-    def read_in_dataframe(self, spend_dataframe):
+
+    def read_in_dataframe(self, dataframe, table_name, strategy):
         """Take dataframe and put it into postgres"""
-        
-        # engine = create_engine(self.db_url)
-        # spend_dataframe.to_sql('', engine, if_exists='', index=False)
+
+        engine = create_engine(self.db_url)
+        dataframe.to_sql(table_name, engine, if_exists=strategy, index=False)
 
     def query(self, query):
         """Used to run a query"""
