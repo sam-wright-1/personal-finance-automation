@@ -16,11 +16,10 @@ class Postgres:
         self.username = os.environ["POSTGRES_USER"]
         self.password = os.environ["POSTGRES_PASSWORD"]
         self.db_name = os.environ["POSTGRES_DB"]
+        self.schema = os.environ["POSTGRES_SCHEMA"]
         self.host = os.environ["POSTGRES_HOST"]
         self.port = os.environ["POSTGRES_PORT"]
-        self.db_url = (
-            f"postgresql://{self.username}:{self.password}@{self.host}/{self.db_name}"
-        )
+        self.db_url = f"postgresql://{self.username}:{self.password}@{self.host}:{self.port}/{self.db_name}"
 
         self.db_params = {
             "host": self.host,
@@ -28,6 +27,7 @@ class Postgres:
             "password": self.password,
             "dbname": self.db_name,
             "port": self.port,
+            "schema": self.schema,
         }
 
     def connect(self):
@@ -35,11 +35,13 @@ class Postgres:
         self.conn = psycopg2.connect(**self.db_params)
         return self.conn
 
-    def read_in_dataframe(self, dataframe, table_name, strategy):
+    def read_in_dataframe(self, table_name, dataframe, strategy):
         """Take dataframe and put it into postgres"""
 
         engine = create_engine(self.db_url)
-        dataframe.to_sql(table_name, engine, if_exists=strategy, index=False)
+        dataframe.to_sql(
+            table_name, engine, schema=self.schema, if_exists=strategy, index=False
+        )
 
     def query(self, query):
         """Used to run a query"""
