@@ -1,0 +1,48 @@
+slice_name: Possible Duplicates
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 3__table
+  viz_type: table
+  query_mode: raw
+  groupby: []
+  time_grain_sqla: P1D
+  temporal_columns_lookup: {}
+  all_columns:
+  - date
+  - amount
+  - type
+  - individual
+  - transaction_category
+  - description
+  - total_rows
+  percent_metrics: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: total_rows
+    operator: '>'
+    operatorId: GREATER_THAN
+    comparator: 1
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_z1g4gwyzts_xq3qx5jlb4a
+  order_by_cols: []
+  row_limit: 1000
+  server_page_length: 10
+  order_desc: true
+  table_timestamp_format: smart_date
+  show_cell_bars: true
+  color_pn: true
+  extra_form_data: {}
+  dashboards:
+  - 13
+query_context: null
+cache_timeout: null
+uuid: b09756be-3ef6-4c77-aaff-acfc5c69ae0f
+version: 1.0.0
+dataset_uuid: e122af00-e555-433d-a2c5-0737fc802698

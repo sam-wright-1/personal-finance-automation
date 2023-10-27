@@ -5,7 +5,6 @@
 create schema my_finances;
 
 -- Raw data history for checking
-drop table if exists "personal_finance"."my_finances"."raw_historical_checking";
 create table "personal_finance"."my_finances"."raw_historical_checking" (
     date date
     , amount numeric(18, 2)
@@ -14,7 +13,6 @@ create table "personal_finance"."my_finances"."raw_historical_checking" (
     , description varchar(600)
 );
 
-drop table if exists "personal_finance"."my_finances"."raw_historical_savings";
 -- Raw data history for savings
 create table "personal_finance"."my_finances"."raw_historical_savings" (
     date date
@@ -24,7 +22,6 @@ create table "personal_finance"."my_finances"."raw_historical_savings" (
     , description varchar(600)
 );
 
-drop table if exists "personal_finance"."my_finances"."raw_historical_credit";
 -- Raw data history for credit
 create table "personal_finance"."my_finances"."raw_historical_credit" (
     "Status" varchar(150)

@@ -27,7 +27,6 @@ class Postgres:
             "password": self.password,
             "dbname": self.db_name,
             "port": self.port,
-            "schema": self.schema,
         }
 
     def connect(self):

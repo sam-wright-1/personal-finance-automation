@@ -5,8 +5,6 @@ ENV POSTGRES_DB=personal_finance
 
 COPY lib/postgres/sql/init.sql /docker-entrypoint-initdb.d/
 
-EXPOSE 6543
-
 # Any copy commands
 
 CMD ["postgres"]

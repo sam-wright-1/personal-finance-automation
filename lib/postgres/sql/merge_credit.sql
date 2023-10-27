@@ -6,12 +6,12 @@ using
         , "Date"::date
         , "Description"::varchar(600)
         , case
-            when "Debit"::numeric(18, 2) is null
+            when "Debit" is null
             then 0
             else "Debit"::numeric(18, 2)
         end as "Debit"
         , case
-            when "Credit"::numeric(18, 2) is null
+            when "Credit" is null
             then 0
             else "Credit"::numeric(18, 2)
         end as "Credit"

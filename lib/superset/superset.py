@@ -7,24 +7,21 @@ import requests
 
 
 class Superset:
-    """Class for Superset Interactions"""
-
-    BASE_URL = (
-        "https://your-superset-instance.com"  # Replace with your Superset instance URL
-    )
-    USERNAME = "your_username"  # Replace with your Superset username
-    PASSWORD = "your_password"  # Replace with your Superset password
+    """Class for Superset"""
 
     def __init__(self):
         self.session = requests.Session()
+        self.port = os.environ["SUPERSET_PORT"]
+        self.host = os.environ["SUPERSET_HOST"]
+        self.username = os.environ["SUPERSET_USERNAME"]
+        self.password = os.environ["SUPERSET_PASSWORD"]
+        self.url = f"http://{self.host}:{self.port}"
         self.login()
-        self.username = os.environ["SUPERSET_USER"]
-        self.password = os.environ["SUPERSET_PASS"]
 
     def login(self):
         """Login to superset"""
-        login_url = f"{self.BASE_URL}/login/"
-        login_payload = {"username": self.USERNAME, "password": self.PASSWORD}
+        login_url = f"{self.url}/login/"
+        login_payload = {"username": self.username, "password": self.password}
 
         # Perform login
         response = self.session.post(login_url, data=login_payload)
@@ -35,18 +32,29 @@ class Superset:
             raise ConnectionError(
                 f"Failed to authenticate with Superset API. Status code: {response.status_code}"
             )
+            
+    def import_dashboard(self, path_to_zip):
+        """Imports dashboard from zipfile"""
+        import_url = f"{self.url}/api/v1/dashboard/import/"
+        
+                # Prepare the authentication data
+        auth = (self.username, self.password)
 
-    def create_datasource(self):
-        """Create datasource in superset"""
+        # Prepare the file to be uploaded
+        files = {
+            'formData': ('dashboard.zip', open(path_to_zip, 'rb'), 'application/zip')
+        }
 
-    def create_dataset(self):
-        """Create dataset in superset"""
+        # Prepare additional form data
+        form_data = {
+            'overwrite': 'true'  # You can adjust this as needed
+        }
 
-    def create_dashboard(self, title, charts, layout):
-        """Implement the logic to create a dashboard here"""
+        response = self.session.post(import_url, auth=auth, data=form_data, files=files)
 
-    def publish_dashboard(self, dashboard_id):
-        """Implement the logic to publish a dashboard here"""
+        if response.status_code != 200:
+            logging.info("Successfully imported a dashboard to superset")
+        
 
     def close(self):
         """Closes a session"""

@@ -1,0 +1,76 @@
+slice_name: Categories by Month
+description: null
+certified_by: null
+certification_details: null
+viz_type: echarts_timeseries_bar
+params:
+  datasource: 1__table
+  viz_type: echarts_timeseries_bar
+  slice_id: 305
+  x_axis: month
+  time_grain_sqla: P1D
+  x_axis_sort_asc: true
+  x_axis_sort_series: name
+  x_axis_sort_series_ascending: true
+  metrics:
+  - aggregate: SUM
+    column:
+      advanced_data_type: null
+      changed_on: '2023-09-10T00:52:54.166749'
+      column_name: amount
+      created_on: '2023-09-10T00:52:54.166747'
+      description: null
+      expression: null
+      extra: null
+      filterable: true
+      groupby: true
+      id: 799
+      is_active: true
+      is_dttm: false
+      python_date_format: null
+      type: NUMERIC
+      type_generic: 0
+      uuid: 070cf881-9b53-4955-af4c-658858ad8d0b
+      verbose_name: null
+    datasourceWarning: false
+    expressionType: SIMPLE
+    hasCustomLabel: false
+    label: SUM(amount)
+    optionName: metric_d4lei41joff_2il1rngf2h9
+    sqlExpression: null
+  groupby:
+  - transaction_category
+  adhoc_filters: []
+  order_desc: true
+  row_limit: 1000
+  truncate_metric: true
+  show_empty_columns: true
+  comparison_type: values
+  annotation_layers: []
+  forecastPeriods: 10
+  forecastInterval: 0.8
+  orientation: vertical
+  x_axis_title_margin: 15
+  y_axis_title_margin: 15
+  y_axis_title_position: Left
+  sort_series_type: sum
+  color_scheme: supersetColors
+  only_total: true
+  show_legend: true
+  legendType: scroll
+  legendOrientation: top
+  x_axis_time_format: smart_date
+  y_axis_format: SMART_NUMBER
+  y_axis_bounds:
+  - null
+  - null
+  rich_tooltip: true
+  tooltipTimeFormat: smart_date
+  extra_form_data: {}
+  dashboards:
+  - 12
+query_context: '{"datasource":{"id":1,"type":"table"},"force":false,"queries":[{"filters":[],"extras":{"having":"","where":""},"applied_time_extras":{},"columns":[{"timeGrain":"P1D","columnType":"BASE_AXIS","sqlExpression":"month","label":"month","expressionType":"SQL"},"transaction_category"],"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2023-09-10T00:52:54.166749","column_name":"amount","created_on":"2023-09-10T00:52:54.166747","description":null,"expression":null,"extra":null,"filterable":true,"groupby":true,"id":799,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"NUMERIC","type_generic":0,"uuid":"070cf881-9b53-4955-af4c-658858ad8d0b","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"SUM(amount)","optionName":"metric_d4lei41joff_2il1rngf2h9","sqlExpression":null}],"orderby":[[{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2023-09-10T00:52:54.166749","column_name":"amount","created_on":"2023-09-10T00:52:54.166747","description":null,"expression":null,"extra":null,"filterable":true,"groupby":true,"id":799,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"NUMERIC","type_generic":0,"uuid":"070cf881-9b53-4955-af4c-658858ad8d0b","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"SUM(amount)","optionName":"metric_d4lei41joff_2il1rngf2h9","sqlExpression":null},false]],"annotation_layers":[],"row_limit":1000,"series_columns":["transaction_category"],"series_limit":0,"order_desc":true,"url_params":{},"custom_params":{},"custom_form_data":{},"time_offsets":[],"post_processing":[{"operation":"pivot","options":{"index":["month"],"columns":["transaction_category"],"aggregates":{"SUM(amount)":{"operator":"mean"}},"drop_missing_columns":false}},{"operation":"rename","options":{"columns":{"SUM(amount)":null},"level":0,"inplace":true}},{"operation":"flatten"}]}],"form_data":{"datasource":"1__table","viz_type":"echarts_timeseries_bar","slice_id":305,"x_axis":"month","time_grain_sqla":"P1D","x_axis_sort_asc":true,"x_axis_sort_series":"name","x_axis_sort_series_ascending":true,"metrics":[{"aggregate":"SUM","column":{"advanced_data_type":null,"changed_on":"2023-09-10T00:52:54.166749","column_name":"amount","created_on":"2023-09-10T00:52:54.166747","description":null,"expression":null,"extra":null,"filterable":true,"groupby":true,"id":799,"is_active":true,"is_dttm":false,"python_date_format":null,"type":"NUMERIC","type_generic":0,"uuid":"070cf881-9b53-4955-af4c-658858ad8d0b","verbose_name":null},"datasourceWarning":false,"expressionType":"SIMPLE","hasCustomLabel":false,"label":"SUM(amount)","optionName":"metric_d4lei41joff_2il1rngf2h9","sqlExpression":null}],"groupby":["transaction_category"],"adhoc_filters":[],"order_desc":true,"row_limit":1000,"truncate_metric":true,"show_empty_columns":true,"comparison_type":"values","annotation_layers":[],"forecastPeriods":10,"forecastInterval":0.8,"orientation":"vertical","x_axis_title_margin":15,"y_axis_title_margin":15,"y_axis_title_position":"Left","sort_series_type":"sum","color_scheme":"supersetColors","only_total":true,"show_legend":true,"legendType":"scroll","legendOrientation":"top","x_axis_time_format":"smart_date","y_axis_format":"SMART_NUMBER","y_axis_bounds":[null,null],"rich_tooltip":true,"tooltipTimeFormat":"smart_date","extra_form_data":{},"dashboards":[12],"force":false,"result_format":"json","result_type":"full"},"result_format":"json","result_type":"full"}'
+cache_timeout: null
+uuid: ef2e4ef4-c0e4-4e2b-9ec4-18a7df536582
+version: 1.0.0
+dataset_uuid: 34d976de-5110-4c71-b9d2-42654c863416

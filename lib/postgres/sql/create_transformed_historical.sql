@@ -6,11 +6,11 @@ as
     select 
         'CREDIT' as type
         , "Date" as date
-        , case 
+        , (case 
             when "Debit" is NULL
             then "Credit"
             else "Debit"
-        end as amount
+        end) * -1 as amount -- flipping the sign as that is how credit works
         , "Description" as description
         , "Member Name" as individual
         , extract(day from "Date") as day

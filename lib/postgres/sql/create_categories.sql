@@ -33,7 +33,7 @@ select
             UPPER(master.description) like '%QUESTAR%'
             or UPPER(master.description) like '%NESTEGG%'
             or UPPER(master.description) like '%ZELLE%'
-            OR UPPER(master.description) = "RENT"
+            OR UPPER(master.description) = 'RENT'
             then 'Utilities'
         when
             UPPER(master.description) like '%FIBER%'
