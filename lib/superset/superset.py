@@ -15,15 +15,36 @@ class Superset:
         self.username = os.environ["SUPERSET_USERNAME"]
         self.password = os.environ["SUPERSET_PASSWORD"]
         self.url = f"http://{self.host}:{self.port}"
-        self.login()
+        (
+            self.auth_token,
+            self.refresh_token,
+        ) = self.__get_superset_access_and_refresh_tokens()
+        self.csrf_token = self.__set_csrf_token()
 
-    def login(self):
-        """Login to superset"""
-        login_url = f"{self.url}/login/"
-        login_payload = {"username": self.username, "password": self.password}
+    def __set_csrf_token(self):
+        """Get token to auth"""
+        security_url = f"{self.url}/api/v1/security/csrf_token/"
+        headers = {
+            "Authorization": f"Bearer {self.auth_token}",
+            "Accept": "application/json",
+            "Connection": "keep-alive",
+        }
+        response = self.session.get(security_url, headers=headers)
 
-        # Perform login
-        response = self.session.post(login_url, data=login_payload)
+        return str(response.json()["result"])
+
+    def __get_superset_access_and_refresh_tokens(self):
+        """Authenticate and get access token"""
+        access_token_url = f"{self.url}/api/v1/security/login"
+
+        json_headers = {
+            "username": self.username,
+            "password": self.password,
+            "provider": "db",
+            "refresh": True,
+        }
+
+        response = self.session.post(access_token_url, json=json_headers)
 
         if response.status_code == 200:
             logging.info("Successfully connected to superset")
@@ -31,109 +52,89 @@ class Superset:
             raise ConnectionError(
                 f"Failed to authenticate with Superset API. Status code: {response.status_code}"
             )
+        access_token = response.json()["access_token"]
+        refresh_token = response.json()["refresh_token"]
 
-    def set_csrf_token(self):
-        """Get token to auth"""
-        security_url = f"{self.url}/api/v1/security/csrf_token/"
+        return access_token, refresh_token
+
+    def star_things(self):
+        """Imports dashboard from zipfile"""
+        star_url = f"{self.url}/api/v1/dashboard/10/favorites/"
+
+        # Define your custom headers
         headers = {
-            "Authorization": f"Bearer {self.get_superset_access_token()}",
             "Accept": "application/json",
-        }
-        response = self.session.get(security_url, headers=headers)
-
-        return str(response.json()["result"])
-
-    def get_dashboards(self):
-        """Get dashboards"""
-        dashboard_url = f"{self.url}/api/v1/dashboard/"
-        login_payload = {
-            "username": self.username,
-            "password": self.password,
-            "provider": "db",
+            "Authorization": f"Bearer {self.auth_token}",
+            "X-CSRFToken": self.csrf_token,
+            "Referer": f"{self.url}/api/v1/security/csrf_token/",
         }
 
-        # Make the POST request
-        response = self.session.get(dashboard_url, data=login_payload)
+        response = self.session.post(star_url, headers=headers)
+
+        if response.status_code == 200:
+            print("Favorited something")
 
         print(response.status_code)
-        print(response.json)
 
-    def get_superset_access_token(self):
-        """Authenticate and get access token"""
-        response = self.session.post(
-            "%s/api/v1/security/login" % self.url,
-            json={
-                "username": self.username,
-                "password": self.password,
-                "provider": "db",
-                "refresh": True,
-            },
-        )
-        access_token = response.json()["access_token"]
-        print("Received access token.")
-        return access_token
+    def favorite_status(self):
+        """Imports dashboard from zipfile"""
+        star_url = f"{self.url}/api/v1/dashboard/favorite_status/"
 
-    # Function to import dashboard from a zip file
+        # Define your custom headers
+        headers = {
+            "Accept": "application/json",
+            "Authorization": f"Bearer {self.auth_token}",
+            "X-CSRFToken": self.csrf_token,
+        }
+
+        response = self.session.get(star_url, headers=headers)
+
+        if response.status_code == 200:
+            print("Favorited something")
+
+        print(response.status_code)
+        print(response.json())
+
     def import_dashboard(self, path_to_zip):
-        """hello"""
-        with open(path_to_zip, "rb") as file:
-            files = {
-                "formData": (
-                    "lib/superset/resources/personal_finance_test_dashboard.zip",
-                    file,
-                    "application/zip",
-                )
-            }
-            headers = {
-                "X-CSRFToken": self.set_csrf_token(),
-                "Authorization": f"Bearer {self.get_superset_access_token()}",
-                "accept": "application/json",
-                "Referer": f"{self.url}/api/v1/dashboard/import/",
-            }
-            response = self.session.post(
-                f"{self.url}/api/v1/dashboard/import/", headers=headers, files=files
-            )
+        """Imports dashboard from zipfile"""
+        import_dashboard_url = f"{self.url}/api/v1/dashboard/import/"
 
-            if response.status_code != 200:
-                raise Exception(f"Failed to import dashboard: {response.text}")
-            print("success")
+        # Define your custom headers
+        import_headers = {
+            "Accept": "application/json",
+            "Authorization": f"Bearer {self.auth_token}",
+            "X-CSRFToken": self.csrf_token,
+        }
+        import_form = {
+            "overwrite": True,
+            "formData": (
+                "@personal_finance_test_dashboard.zip;type=application/x-zip-compressed"
+            ),
+        }
+        # Make the POST request
+        response = self.session.post(
+            import_dashboard_url, headers=import_headers, files=import_form
+        )
 
-    # def import_dashboard(self, path_to_zip):
-    #     """Imports dashboard from zipfile"""
-    #     import_url = f"{self.url}/api/v1/dashboard/import/"
+        if response.status_code == 200:
+            print("Successfully imported a dashboard to superset")
 
-    #     # Define your custom headers
-    #     new_headers = {
-    #         "accept": "application/json",
-    #         "overwrite": "true",
-    #         "passwords": "postgres",
-    #         "X-CSRFToken": self.csrf_token
+        print(response.status_code)
 
-    #     }
+    def get_dashboards(self):
+        """Get all dashboard json"""
+        dashboard_url = f"{self.url}/api/v1/dashboard/"
+        headers = {
+            "Accept": "application/json",
+            "Authorization": f"Bearer {self.auth_token}",
+            "X-CSRFToken": self.csrf_token,
+        }
 
-    #     try:
+        response = self.session.get(dashboard_url, headers=headers)
 
-    #         # Prepare the file for upload
-    #         files = {
-    #             'formData': (
-    #                 path_to_zip,
-    #                 open(path_to_zip, 'rb'),
-    #                 'application/json'
-    #             )
-    #         }
-
-    #         # Make the POST request
-    #         response = self.session.post(import_url, headers = new_headers, files = files)
-
-    #         if response.status_code == 200:
-    #             print("Successfully imported a dashboard to superset")
-
-    #         print(response.status_code)
-    #         print(self.csrf_token)
-    #     except Exception as err:
-    #         print("error")
-    #         print(err)
+        return response.json()
 
     def close(self):
         """Closes a session"""
         self.session.close()
+
