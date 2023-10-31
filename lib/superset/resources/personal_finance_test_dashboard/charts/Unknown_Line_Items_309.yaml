@@ -1,0 +1,45 @@
+slice_name: Unknown Line Items
+description: null
+certified_by: null
+certification_details: null
+viz_type: table
+params:
+  datasource: 1__table
+  viz_type: table
+  query_mode: raw
+  groupby: []
+  time_grain_sqla: P1D
+  temporal_columns_lookup: {}
+  all_columns:
+  - date
+  - amount
+  - description
+  percent_metrics: []
+  adhoc_filters:
+  - expressionType: SIMPLE
+    subject: transaction_category
+    operator: ==
+    operatorId: EQUALS
+    comparator: Unknown
+    clause: WHERE
+    sqlExpression: null
+    isExtra: false
+    isNew: false
+    datasourceWarning: false
+    filterOptionName: filter_ewa6i12aaji_7k48x9nfmgd
+  order_by_cols:
+  - '["date", true]'
+  row_limit: 5000
+  server_page_length: 10
+  order_desc: true
+  table_timestamp_format: smart_date
+  show_cell_bars: true
+  color_pn: true
+  extra_form_data: {}
+  dashboards:
+  - 11
+query_context: null
+cache_timeout: null
+uuid: 63b1aac1-3268-4af8-a3ff-103672ed24bb
+version: 1.0.0
+dataset_uuid: 34d976de-5110-4c71-b9d2-42654c863416

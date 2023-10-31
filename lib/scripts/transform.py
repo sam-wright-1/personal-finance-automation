@@ -1,4 +1,5 @@
 import os
+
 import pandas as pd
 
 column_order = [
@@ -49,7 +50,9 @@ def transform_financial_data():
     checking_df["Individual"] = ""
     saving_df["Individual"] = ""
 
-    checking_df["Flow"] = checking_df["Amount"].apply(lambda x: "In" if x > 0 else "Out")
+    checking_df["Flow"] = checking_df["Amount"].apply(
+        lambda x: "In" if x > 0 else "Out"
+    )
     saving_df["Flow"] = saving_df["Amount"].apply(lambda x: "In" if x > 0 else "Out")
     credit_df["Flow"] = credit_df["Amount"].apply(lambda x: "In" if x > 0 else "Out")
 

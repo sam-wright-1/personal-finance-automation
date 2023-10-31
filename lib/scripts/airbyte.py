@@ -1,5 +1,6 @@
-import time
 import base64
+import time
+
 import requests
 
 
@@ -28,7 +29,8 @@ def airbyte():
     airbyte_request = requests.post(url, json=payload, headers=headers)
 
     if airbyte_request.status_code == 200:
-        print("Refresh Running")
+        print("Data replication started")
         time.sleep(15)
+        print("Done")
     else:
         print("Refresh Failed")

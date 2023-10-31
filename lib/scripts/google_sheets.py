@@ -1,13 +1,13 @@
 import os
-import pandas as pd
 
+import pandas as pd
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
-from .transform import transform_financial_data
+from lib.scripts.transform import transform_financial_data
 
 # If modifying these scopes, delete the file token.json.
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
@@ -16,7 +16,7 @@ SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 SAMPLE_SPREADSHEET_ID = ""
 SAMPLE_RANGE_NAME = "sheetname!A1:Z"
 
-# Column Headers
+# Google Sheet Headers
 HEADERS = [
     "Type",
     "Date",
@@ -33,13 +33,13 @@ HEADERS = [
 
 def google_sheets_upload():
     """Shows basic usage of the Sheets API. Prints values from a sample spreadsheet."""
-    
+
     parent_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-    
+
     # Construct the full path to the credentials file
     creds_file_path = os.path.join(parent_dir, "creds", "credentials.json")
     token_file_path = os.path.join(parent_dir, "creds", "token.json")
-    
+
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
     # created automatically when the authorization flow completes for the first
@@ -54,7 +54,7 @@ def google_sheets_upload():
             flow = InstalledAppFlow.from_client_secrets_file(creds_file_path, SCOPES)
             creds = flow.run_local_server(port=0)
         # Save the credentials for the next run
-        with open(token_file_path, "w") as token:
+        with open(token_file_path, "w", encoding="utf-8") as token:
             token.write(creds.to_json())
 
     try:
@@ -97,7 +97,9 @@ def google_sheets_upload():
         # Exclude rows that are in df2
         excluded_df = merged_df[merged_df["_merge"] == "right_only"]
         # Drop the indicator column
-        excluded_df = excluded_df.drop(columns=["_merge", "Notes"]).sort_values(by=['Date'], ascending=True)
+        excluded_df = excluded_df.drop(columns=["_merge", "Notes"]).sort_values(
+            by=["Date"], ascending=True
+        )
 
         # Execute google sheet update
         print(f" Inserting {len(excluded_df)} rows.")
@@ -110,9 +112,10 @@ def google_sheets_upload():
         )
         update_values.execute()
 
-        print('Google Sheets have been updated')
+        print("Google Sheets have been updated")
     except HttpError as err:
         print(err)
-        
+
+
 if __name__ == "__main__":
     google_sheets_upload()

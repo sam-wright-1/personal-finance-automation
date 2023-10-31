@@ -2,33 +2,56 @@ version: '3.7'
 
 services:
   python_main:
-    image: python_container_image
+    image: python_container
+    container_name: finance_python
     build:
       context: .
       dockerfile: lib/docker/Dockerfile
+    environment:
+      AIRBYTE_USER: ${AIRBYTE_USER:-airbyte}
+      AIRBYTE_PASSWORD: ${AIRBYTE_PASSWORD:-password}
+      AIRBYTE_HOST: ${AIRBYTE_HOST:-localhost}
+      AIRBYTE_PORT: ${AIRBYTE_PORT:-8000}
+      SUPERSET_HOST: ${SUPERSET_HOST:-localhost}
+      SUPERSET_USERNAME: ${SUPERSET_USERNAME:-admin}
+      SUPERSET_PORT: ${SUPERSET_PORT:-8088}
+      SUPERSET_PASSWORD: ${SUPERSET_PASSWORD:-admin}
+      POSTGRES_DB: ${POSTGRES_DB:-personal_finance}
+      POSTGRES_SCHEMA: ${POSTGRES_SCHEMA:-my_finances}
+      POSTGRES_HOST: ${POSTGRES_HOST:-postgres_finance}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+      PYTHONPATH: ${PYTHONPATH}
     networks:
       - backend
       - my_custom_network
     depends_on:
       - postgres_finance
+    volumes:
+      - ./lib:/finance_app/lib
 
   postgres_finance:
     image: postgres:15
     build:
       context: .
-      dockerfile: postgres/Dockerfile
-    container_name: finance_automation_database
+      dockerfile: lib/postgres/Dockerfile
+    container_name: personal_finance_database
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: personal_finance
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-personal_finance}
     ports:
-      - "5432:5432"
+      - "6543:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./lib/postgres/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - backend
+
 
 volumes:
   postgres-data:

@@ -1,0 +1,556 @@
+dashboard_title: Test Data Dashboard
+description: null
+css: ''
+slug: null
+certified_by: ''
+certification_details: ''
+published: true
+uuid: f9b717c0-fe14-4d89-b368-775d32742822
+position:
+  CHART-BUdsIhLJiL:
+    children: []
+    id: CHART-BUdsIhLJiL
+    meta:
+      chartId: 307
+      height: 77
+      sliceName: Monthly Totals
+      uuid: 3f5b6165-c553-441e-b61b-75151bb27ac3
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-UN0F4jXRi
+    type: CHART
+  CHART-TQe6_fbwoG:
+    children: []
+    id: CHART-TQe6_fbwoG
+    meta:
+      chartId: 306
+      height: 72
+      sliceName: Master Total for the Year
+      uuid: 82c77595-d9b3-4c39-a400-00087568d046
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-rvJxzr9M2z
+    type: CHART
+  CHART-W0S-v4bEMM:
+    children: []
+    id: CHART-W0S-v4bEMM
+    meta:
+      chartId: 304
+      height: 72
+      sliceName: Avg Amount Per Category Per Month By Year
+      uuid: 0ad03569-a334-49fe-abc4-9244eaa2c8a3
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-rvJxzr9M2z
+    type: CHART
+  CHART-Yox1xhY-fk:
+    children: []
+    id: CHART-Yox1xhY-fk
+    meta:
+      chartId: 305
+      height: 87
+      sliceName: Categories
+      uuid: ef2e4ef4-c0e4-4e2b-9ec4-18a7df536582
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-REhYkJExxs
+    type: CHART
+  CHART-explore-105-1:
+    children: []
+    id: CHART-explore-105-1
+    meta:
+      chartId: 308
+      height: 77
+      sliceName: Totals by category
+      uuid: 369d137c-461b-4910-90e8-2ef851549596
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-UN0F4jXRi
+    type: CHART
+  CHART-explore-148-1:
+    children: []
+    id: CHART-explore-148-1
+    meta:
+      chartId: 309
+      height: 78
+      sliceName: Unknown Line Items
+      uuid: 63b1aac1-3268-4af8-a3ff-103672ed24bb
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-kMyk2OeDZ
+    type: CHART
+  CHART-explore-186-1:
+    children: []
+    id: CHART-explore-186-1
+    meta:
+      chartId: 310
+      height: 78
+      sliceName: Possible Duplicates
+      uuid: b09756be-3ef6-4c77-aaff-acfc5c69ae0f
+      width: 6
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-kMyk2OeDZ
+    type: CHART
+  DASHBOARD_VERSION_KEY: v2
+  DIVIDER-ILII-ROJyt:
+    children: []
+    id: DIVIDER-ILII-ROJyt
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: DIVIDER
+  DIVIDER-XDJ9OIwobd:
+    children: []
+    id: DIVIDER-XDJ9OIwobd
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: DIVIDER
+  DIVIDER-nooNoB3uos:
+    children: []
+    id: DIVIDER-nooNoB3uos
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: DIVIDER
+  DIVIDER-qVF0Fdsez-:
+    children: []
+    id: DIVIDER-qVF0Fdsez-
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: DIVIDER
+  DIVIDER-yHdrJmuChy:
+    children: []
+    id: DIVIDER-yHdrJmuChy
+    meta: {}
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: DIVIDER
+  GRID_ID:
+    children:
+    - ROW-oq_BnqQ6ky
+    - DIVIDER-qVF0Fdsez-
+    - ROW-REhYkJExxs
+    - DIVIDER-ILII-ROJyt
+    - ROW-UN0F4jXRi
+    - DIVIDER-yHdrJmuChy
+    - ROW-rvJxzr9M2z
+    - DIVIDER-nooNoB3uos
+    - DIVIDER-XDJ9OIwobd
+    - ROW-kMyk2OeDZ
+    id: GRID_ID
+    parents:
+    - ROOT_ID
+    type: GRID
+  HEADER_ID:
+    id: HEADER_ID
+    meta:
+      text: Test Data Dashboard
+    type: HEADER
+  MARKDOWN--b6Howt_jh:
+    children: []
+    id: MARKDOWN--b6Howt_jh
+    meta:
+      code: "# \u2728Welcome To Your Test Personal Financial Dashboard\n## \u2728\
+        Select The Correct Filters On The Left\n\n<br />\n\nGood luck!"
+      height: 27
+      width: 12
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    - ROW-oq_BnqQ6ky
+    type: MARKDOWN
+  ROOT_ID:
+    children:
+    - GRID_ID
+    id: ROOT_ID
+    type: ROOT
+  ROW-REhYkJExxs:
+    children:
+    - CHART-Yox1xhY-fk
+    id: ROW-REhYkJExxs
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-UN0F4jXRi:
+    children:
+    - CHART-BUdsIhLJiL
+    - CHART-explore-105-1
+    id: ROW-UN0F4jXRi
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-kMyk2OeDZ:
+    children:
+    - CHART-explore-148-1
+    - CHART-explore-186-1
+    id: ROW-kMyk2OeDZ
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-oq_BnqQ6ky:
+    children:
+    - MARKDOWN--b6Howt_jh
+    id: ROW-oq_BnqQ6ky
+    meta:
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+  ROW-rvJxzr9M2z:
+    children:
+    - CHART-W0S-v4bEMM
+    - CHART-TQe6_fbwoG
+    id: ROW-rvJxzr9M2z
+    meta:
+      '0': ROOT_ID
+      background: BACKGROUND_TRANSPARENT
+    parents:
+    - ROOT_ID
+    - GRID_ID
+    type: ROW
+metadata:
+  chart_configuration:
+    '304':
+      id: 304
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 305
+        - 306
+        - 307
+        - 308
+        - 309
+        - 310
+    '305':
+      id: 305
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 306
+        - 307
+        - 308
+        - 309
+        - 310
+    '307':
+      id: 307
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 308
+        - 309
+        - 310
+    '308':
+      id: 308
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 309
+        - 310
+    '309':
+      id: 309
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 310
+    '310':
+      id: 310
+      crossFilters:
+        scope: global
+        chartsInScope:
+        - 304
+        - 305
+        - 306
+        - 307
+        - 308
+        - 309
+  global_chart_configuration:
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    chartsInScope:
+    - 304
+    - 305
+    - 306
+    - 307
+    - 308
+    - 309
+    - 310
+  color_scheme: ''
+  refresh_frequency: 0
+  shared_label_colors:
+    '2023': '#ffb400'
+    Unknown: '#1FA8C9'
+    Groceries: '#FF7F44'
+    Transfers: '#D1C6BC'
+    Gas: '#FCC700'
+    Miscellaneous: '#FEC0A1'
+    Fast Food: '#3CCCCB'
+    Clothes: '#D3B3DA'
+    Cash Apps: '#A38F79'
+    Utilities: '#9EE5E5'
+    Web Purchase: '#ACE1C4'
+  color_scheme_domain: []
+  expanded_slices: {}
+  label_colors: {}
+  timed_refresh_immune_slices: []
+  cross_filters_enabled: true
+  default_filters: '{}'
+  native_filter_configuration:
+  - id: NATIVE_FILTER-uXdOaWUvO
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: CATEGORY
+    filterType: filter_select
+    targets:
+    - column:
+        name: transaction_category
+      datasetUuid: 34d976de-5110-4c71-b9d2-42654c863416
+    defaultDataMask:
+      __cache: {}
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 304
+    - 305
+    - 306
+    - 307
+    - 308
+    - 309
+    - 310
+    tabsInScope: []
+  - id: NATIVE_FILTER-YsQ_EeHJr
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: 'YEAR '
+    filterType: filter_select
+    targets:
+    - column:
+        name: year
+      datasetUuid: 34d976de-5110-4c71-b9d2-42654c863416
+    defaultDataMask:
+      extraFormData:
+        filters:
+        - col: year
+          op: IN
+          val:
+          - 2023
+      filterState:
+        validateMessage: false
+        validateStatus: false
+        label: '2023'
+        value:
+        - 2023
+      __cache:
+        validateMessage: false
+        validateStatus: false
+        label: '2023'
+        value:
+        - 2023
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 102
+    - 103
+    - 105
+    - 106
+    - 107
+    - 148
+    - 381
+    tabsInScope: []
+  - id: NATIVE_FILTER-v2UQsYw8c
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: MONTH
+    filterType: filter_select
+    targets:
+    - column:
+        name: month
+      datasetUuid: 34d976de-5110-4c71-b9d2-42654c863416
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 102
+    - 103
+    - 105
+    - 107
+    - 148
+    - 381
+    tabsInScope: []
+  - id: NATIVE_FILTER-V86Ba3qqn
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: DATE
+    filterType: filter_select
+    targets:
+    - column:
+        name: date
+      datasetUuid: 34d976de-5110-4c71-b9d2-42654c863416
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 102
+    - 103
+    - 105
+    - 107
+    - 148
+    - 381
+    tabsInScope: []
+  - id: NATIVE_FILTER-3NHl-vMRs
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: FLOW
+    filterType: filter_select
+    targets:
+    - column:
+        name: flow
+      datasetUuid: 34d976de-5110-4c71-b9d2-42654c863416
+    defaultDataMask:
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded: []
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 102
+    - 103
+    - 105
+    - 107
+    - 148
+    - 381
+    tabsInScope: []
+  - id: NATIVE_FILTER-eMMX0wrM6
+    controlValues:
+      enableEmptyFilter: false
+      defaultToFirstItem: false
+      multiSelect: true
+      searchAllOptions: false
+      inverseSelection: false
+    name: TYPE
+    filterType: filter_select
+    targets:
+    - column:
+        name: type
+      datasetUuid: 34d976de-5110-4c71-b9d2-42654c863416
+    defaultDataMask:
+      __cache: {}
+      extraFormData: {}
+      filterState: {}
+      ownState: {}
+    cascadeParentIds: []
+    scope:
+      rootPath:
+      - ROOT_ID
+      excluded:
+      - 304
+      - 310
+    type: NATIVE_FILTER
+    description: ''
+    chartsInScope:
+    - 305
+    - 306
+    - 307
+    - 308
+    - 309
+    tabsInScope: []
+version: 1.0.0
