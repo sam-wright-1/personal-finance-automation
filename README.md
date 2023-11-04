@@ -1,20 +1,28 @@
 # personal-finance-automation
 ![Finance Tree](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/finance.jpg)                                                       
 
+# Quickstart
+1. Download Apache Superset using Docker Compose (https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/)
+   1. `git clone https://github.com/apache/superset.git`
+   2. `cd superset`
+   3. For Mac - 
+   4. For Windows - 
+   6. Go to localhost:8088 in your browser and use username:admin, password:admin to login
+
 # Purpose
-* The purpose of this repo is to help users create a free, semi-automated financial system with code.
-* It will help you answer basic questions such as "How much money do I spend on x category on average per month?" or "How much money did I make this year compared to how much money did I spend?"
+* Guide users to create a free, semi-automated financial system with code.
+* Create your own data engineering project using many tools and methods that are highly utilized in practice (Docker, Docker Compose, Superset, Airbyte, OOP, etc)
 
 # Benefit
 #### At the end of this guide you will have created:
-* A dashboard that will show you personal monthly spend totals, averages, and anything else you need to answer your basic financial questions.
-* An easy way to update your financial data (takes ~ 1 or 2 minutes).
+* A dashboard that will help you answer basic questions such as "How much money do I spend on x category on average per month?" or "How much money did I make this year compared to how much money did I spend?"
+* An easy way to update your spend financial data (takes ~ 1 or 2 minutes).
 * Your own basic data engineering project.
 
 ![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/financial_snapshot.png)
 
 # Birds Eye View
-Google Sheets is used as your main data storage system by putting transformed financial data into a master sheet.  You will export data from your financial sources and use the python scripts within the project to transform the data and upload it into Goole Sheets.  You then will use Airbyte to take that transformed data from Google Sheets and put it into Postgres for analysis, transformations, and connection with Superset (our BI tool to create graphs of the data).  Superset takes the transformed data from postgres and creates graphs and charts for quick and easy insights.
+
 # Explainations
 * `lib/imports` holds data that you export from your financial sources.  This data will be transformed and put into google sheets.
 * `lib/scripts/google_sheets.py` takes the data provided by you (exported from financial sources) and imports it into a google sheet (with deduplication handled)
@@ -29,8 +37,7 @@ Google Sheets is used as your main data storage system by putting transformed fi
 
 # Requirements
 * Docker Installation
-* Google Cloud Project
-* Coding Basics
+* Intermediate Python and SQL skills
 
 # Solution Architecture
 ![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/finance_architecture_diagram.png)
@@ -82,8 +89,7 @@ Google Sheets is used as your main data storage system by putting transformed fi
     2. Run `docker run --rm -it --network host python_container_image` to build the container and run `main.py` at the same time which should trigger the whole pipeline (and delete the container afterward).
     3. You can run this as well for a container that doesnt delete afterwards `docker run -d --name python_main python_container_image` or `docker start python_main` if it exists already
  
-# NOTES:
-   - When doing these steps, the containers state should be running.
-   - Depending on how your data looks, you might have to do quite a few manual changes.
-   - lib/sql holds sql scripts to create tables in postgres, make sure those make sense to run in postgres once data in replicated to the postgres container through airbyte
-   - Dont flame me for not linting, formatting, testing, using pdm and a pyproject.toml file, containerizing python, etc. i just did this quick and dirty
+
+# Future
+* Linting, formatting, unit and integration tests
+* More interchangable parts to accommodate many cases
