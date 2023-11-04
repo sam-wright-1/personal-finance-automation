@@ -5,9 +5,23 @@
 1. Download Apache Superset using Docker Compose (https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/)
    1. `git clone https://github.com/apache/superset.git`
    2. `cd superset`
-   3. For Mac - 
-   4. For Windows - 
-   6. Go to localhost:8088 in your browser and use username:admin, password:admin to login
+   3. For Mac
+      ```
+      docker compose -f docker-compose-non-dev.yml pull
+      docker compose -f docker-compose-non-dev.yml up
+      ```
+      For Windows
+      ```
+      git checkout 3.0.0
+      set TAG=3.0.0
+      docker compose -f docker-compose-non-dev.yml pull
+      docker compose -f docker-compose-non-dev.yml up
+      ```
+   3. Go to localhost:8088 in your browser and use username:admin, password:admin to login
+
+# Requirements
+* Docker Installation
+* Intermediate Python and SQL skills
 
 # Purpose
 * Guide users to create a free, semi-automated financial system with code.
@@ -34,10 +48,6 @@
 * `lib/creds` holds credentials to access google sheets through python
 * `postgres` holds dockerfile for postgres container
 * `Dockerfile` used to create the python container to run `main.py` (easy to build and run by using docker build and docker run without having to setup your own python env)
-
-# Requirements
-* Docker Installation
-* Intermediate Python and SQL skills
 
 # Solution Architecture
 ![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/finance_architecture_diagram.png)
