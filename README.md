@@ -2,7 +2,11 @@
 ![Finance Tree](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/finance.jpg)                                                       
 
 # Quickstart
-1. Download Apache Superset using Docker Compose (https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/)
+1. Clone this repo:
+   1. `git clone https://github.com/sam-wright-1/personal-finance-automation.git`
+   2. Run `docker compose up -d`
+   3. Once initialized and containers are running, you can run `docker exec -it finance_python python3 lib/scripts/run_test_pipeline.py` which builds some test data into postgres tables.
+3. Download Apache Superset using Docker Compose (https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/).  You can clone superset into the same directory
    1. `git clone https://github.com/apache/superset.git`
    2. `cd superset`
    3. For Mac
@@ -17,7 +21,9 @@
       docker compose -f docker-compose-non-dev.yml pull
       docker compose -f docker-compose-non-dev.yml up
       ```
-   3. Go to localhost:8088 in your browser and use username:admin, password:admin to login
+   3. Go to localhost:8088 in your browser and use `admin` as the username and `admin` as the password
+4. Log into apache superset using `admin` as the username and `admin` as the password,
+5. Import the test dashboard using the zip file located at `lib/superset/resources/personal_finance_test_dashboard.zip`.  Go to the dashboard and make sure that data is appearing in the graphs.
 
 # Requirements
 * Docker Installation
