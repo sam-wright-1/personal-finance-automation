@@ -8,36 +8,8 @@
 # Quickstart
 1. Clone this repo:
    1. `git clone https://github.com/sam-wright-1/personal-finance-automation.git`
-   2. (Not Necessary) If you want to overwrite any env variables, create a .env file with any of the following vars included
-   ```
-   # Airbyte env
-   AIRBYTE_HOST=
-   AIRBYTE_USER=
-   AIRBYTE_PASSWORD=
-   AIRBYTE_PORT=8000
-   
-   # Superset env
-   SUPERSET_HOST=
-   SUPERSET_USERNAME=
-   SUPERSET_PASSWORD=
-   SUPERSET_PORT=8088
-   
-   # Postgres env
-   POSTGRES_DB=
-   POSTGRES_HOST=
-   POSTGRES_USER=
-   POSTGRES_PASSWORD=
-   POSTGRES_PORT=
-   POSTGRES_SCHEMA=
-   
-   AWS_ACCESS_KEY_ID=
-   AWS_SECRET_ACCESS_KEY=
-   AWS_DEFAULT_REGION=
-   
-   PYTHONPATH=
-   ```
-   3. In the repo, run `docker compose up -d`
-   4. Once initialized and containers are running, you can run `docker exec -it finance_python python3 lib/scripts/run_test_pipeline.py` which builds some test data into postgres tables.
+   2. In the repo, run `docker compose up -d`
+   3. Once initialized and containers are running, you can run `docker exec -it finance_python python3 lib/scripts/run_test_pipeline.py` which builds some test data into postgres tables.
 3. Download Apache Superset using Docker Compose (https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/)
    1. Run `git clone https://github.com/apache/superset.git`
    2. Run `cd superset`
@@ -140,7 +112,36 @@ AWS_DEFAULT_REGION=
    3. I recommend starting with just postgres and superset.  You can use the DataSource object in `lib/data/DataSource.py` to import your sources into postgres, and then using sql, transform the raw data to a usable format.
    4. If you want different categories, look for `lib/postgres/sql/create_categories.sql`.  This holds the custom code to map out your categories based on the descriptions from your data sources.
    5. The file `lib/scripts/transform.py` shows some python transformations that can be used.  Maybe adding a new method to the object DataSource in `lib/data/datas_source.py` would work easier than using this script
- 
+  
+### Environment Variables
+If you want to overwrite any env variables, create a .env file with any of the following vars included
+   ```
+   # Airbyte env
+   AIRBYTE_HOST=
+   AIRBYTE_USER=
+   AIRBYTE_PASSWORD=
+   AIRBYTE_PORT=8000
+   
+   # Superset env
+   SUPERSET_HOST=
+   SUPERSET_USERNAME=
+   SUPERSET_PASSWORD=
+   SUPERSET_PORT=8088
+   
+   # Postgres env
+   POSTGRES_DB=
+   POSTGRES_HOST=
+   POSTGRES_USER=
+   POSTGRES_PASSWORD=
+   POSTGRES_PORT=
+   POSTGRES_SCHEMA=
+   
+   AWS_ACCESS_KEY_ID=
+   AWS_SECRET_ACCESS_KEY=
+   AWS_DEFAULT_REGION=
+   
+   PYTHONPATH=
+   ```
 
 # Future
 * Linting, formatting, unit and integration tests
