@@ -1,12 +1,44 @@
 # personal-finance-automation
 ![Finance Tree](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/finance.jpg)                                                       
 
+# Requirements
+* Docker Installation
+* Intermediate Python and SQL skills
+  
 # Quickstart
 1. Clone this repo:
    1. `git clone https://github.com/sam-wright-1/personal-finance-automation.git`
-   2. Run `docker compose up -d`
-   3. Once initialized and containers are running, you can run `docker exec -it finance_python python3 lib/scripts/run_test_pipeline.py` which builds some test data into postgres tables.
-3. Download Apache Superset using Docker Compose (https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/).  You can clone superset into the same directory
+   2. (Not Necessary) If you want to overwrite any env variables, create a .env file with any of the following vars included
+   ```
+   # Airbyte env
+   AIRBYTE_HOST=
+   AIRBYTE_USER=
+   AIRBYTE_PASSWORD=
+   AIRBYTE_PORT=8000
+   
+   # Superset env
+   SUPERSET_HOST=
+   SUPERSET_USERNAME=
+   SUPERSET_PASSWORD=
+   SUPERSET_PORT=8088
+   
+   # Postgres env
+   POSTGRES_DB=
+   POSTGRES_HOST=
+   POSTGRES_USER=
+   POSTGRES_PASSWORD=
+   POSTGRES_PORT=
+   POSTGRES_SCHEMA=
+   
+   AWS_ACCESS_KEY_ID=
+   AWS_SECRET_ACCESS_KEY=
+   AWS_DEFAULT_REGION=
+   
+   PYTHONPATH=
+   ```
+   4. In the repo, run `docker compose up -d`
+   5. Once initialized and containers are running, you can run `docker exec -it finance_python python3 lib/scripts/run_test_pipeline.py` which builds some test data into postgres tables.
+3. Download Apache Superset using Docker Compose (https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/)
    1. `git clone https://github.com/apache/superset.git`
    2. `cd superset`
    3. For Mac
@@ -21,16 +53,16 @@
       docker compose -f docker-compose-non-dev.yml pull
       docker compose -f docker-compose-non-dev.yml up
       ```
-4. Log into apache superset by going to localhost:8088 in your browser and using `admin` as both the username and password (they are default creds that can be changed)
+4. Log into apache superset by going to localhost:8088 in your browser and using `admin` as both the username and password 
 5. Import the test dashboard using the zip file located at `lib/superset/resources/personal_finance_test_dashboard.zip`.  Go to the dashboard and make sure that data is appearing in the graphs.
 
-# Requirements
-* Docker Installation
-* Intermediate Python and SQL skills
+___
+
 
 # Purpose
 * Guide users to create a free, semi-automated financial system with code.
-* Create your own data engineering project using many tools and methods that are highly utilized in practice (Docker, Docker Compose, Superset, Airbyte, OOP, etc)
+* Create your own data engineering project using many tools and methods that are highly utilized in practice (Docker, Docker Compose, Superset, Airbyte, object-oriented programming, etc)
+* This project streamlines your financial spending data, subjecting it to a series of transformations before presenting it in an accessible dashboard capable of providing answers to a wide array of financial questions.  All of this is containerized so its easy to use and rebuild if needed.
 
 # Benefit
 #### At the end of this guide you will have created:
@@ -38,71 +70,72 @@
 * An easy way to update your spend financial data (takes ~ 1 or 2 minutes).
 * Your own basic data engineering project.
 
+### Example financial spend dashboard
 ![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/financial_snapshot.png)
 
-# Birds Eye View
-
-# Explainations
-* `lib/imports` holds data that you export from your financial sources.  This data will be transformed and put into google sheets.
-* `lib/scripts/google_sheets.py` takes the data provided by you (exported from financial sources) and imports it into a google sheet (with deduplication handled)
-* `lib/scripts/transform.py` is used by lib/scripts/google_sheets.py and transforms the data that you provide in the imports folder.  You will most likely have to change this.
-* `lib/sql` holds all of the sql transformations used to take the raw data that is imported into postgres through Airbyte and turn it into something that Superset can use.  It also categorizes your spend by description.
-* `lib/scripts/airbyte` basically is just run when you want to replicate data from google sheets to postgres
-* `lib/scripts/run_sql_in_python.py` is used to run the scripts in lib/sql in the postgres container
-* `lib/main.py` puts everything together (takes data from lib/import, compares it to google sheets, inserts data into google sheets, then runs airbyte to push that data to postgres, then runs the sql commands in postgres to transform the data).
-* `lib/creds` holds credentials to access google sheets through python
-* `postgres` holds dockerfile for postgres container
-* `Dockerfile` used to create the python container to run `main.py` (easy to build and run by using docker build and docker run without having to setup your own python env)
+# Detailed Explainations
+* `lib/imports` holds data that you export from your financial sources.  This data will be transformed and put into whatever storage you choose.
+* `lib/superset` used to interface with superset 
+* `lib/s3.py` used to interface with s3
+* `lib/postgres/sql` holds all of the sql code to transform raw data in postgres to a usable format.
+* `lib/airbyte` holds object code to interface with Airbyte
+* `lib/scripts/run_test_pipeline.py` is used to run the transformation pipeline for test data that has been provided and put it into postgres for superset to read.  
+* `lib/data` Holds the DataSource object that can be used for each source file that you need to upload
+* `lib/google_sheets` holds credentials and code to interface with google sheets
+* `lib/postgres` holds dockerfile for postgres code for postgres container and postgres data access object
+* `lib/docker/Dockerfile` used to create the python container to run any scripts
 
 # Solution Architecture
 ![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/finance_architecture_diagram.png)
 
-# Steps to Create Solution (ALERT: THESE CHANGED AS OF 2023-9-30, new instructions to come)
+# Components
+### Using Airbyte
+Using airbyte, you can create pipelines that push data to google sheets or s3, and then you can have airbyte push that data to postgres for superset to read from.
 1. Clone Airbyte into this repo (from https://docs.airbyte.com/quickstart/deploy-airbyte/)
    1. `git clone https://github.com/airbytehq/airbyte.git`
    2. `cd airbyte`
    3. `./run-ab-platform.sh`
    4. Go to localhost:8000 in your browser and use username:airbyte, password:password
-2. Clone Superset into this repo (from https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/)
-   1. `git clone https://github.com/apache/superset.git`
-   2. `cd superset`
-   3. `docker compose up`
-   4. Go to localhost:8088 in your browser and use username:admin, password:admin
-3. Create Postgres Container
-   - `cd postgres`
-   - `docker build -t personal_finance_postgres ./` (creates the docker image based on the Dockerfile in that folder)
-   - `docker run -d --name personal_finance_postgres -p 5432:5432 personal_finance_postgres` (creates the container with the image you created)
-   - Those commands will start the container up, but if you need to stop it or run it, you can use docker desktop or use docker commands (like `docker run CONTAINER_NAME` or `docker stop CONTAINER_NAME`)
-4. Create Google Sheet for Personal Finance
-   - This is just to house all of your data.  You can look at my google sheet image to get an idea of what columns I included in mine.  (lib/images/sheet_image.png)
-5. Create Google Cloud Project
+   5. Youll need to create connections to the systems of your choice manually.
+2. Using Airbyte with google sheets
+   1. Go to localhost:8000 and login to airbyte (airbyte, password)
+      - Create a source with google sheets
+      - Input client id, secret, and refresh token that you received from your google cloud project steps (see Using Google Sheets section below)
+      - If that doesnt work, you can try created a service account in Google Cloud
+      - Create a destination with Postgres using correct postgres creds.
+      - Create a connection between google sheets and postgres with the sheets you want to sync.
+      - Make a note of the connectionid of the connection just created (can be found in the url) and use that in `lib/airbyte/airbyte.py` for connectionId in the payload (which is currently empty)
+  
+### Using Google Sheets
+Google sheets can be used as a raw or transformed data storage that airbyte can push to postgres for an easy data pipeline integration
+1. Create Google Sheet for Personal Finance
+   - This is just to house all of your data.  You can look at my google sheet image to get an idea of what columns I included in mine.  `images/sheet_image.png`
+2. Create Google Cloud Project
    1. Enable Google Sheets API under APIs and Services
    2. In the same spot (APIs and Services), under credentials, create OAuth 2.0 client credentials
       - Basically just follow this https://developers.google.com/sheets/api/quickstart/python
       - You'll have to donwload and rename the .json credentials file as credentials.json
-      - Put credentials in lib/creds as credentials.json
-6. Modifications
+      - Put credentials in lib/google_sheets/creds as `credentials.json`
+      - Once you run the google sheets code, it will have you authenticate through your browser so that your python code can access google sheets.
+      - Once authenticated it should create a `token.json` file in the creds directory that will be used going forward.
+      - If you ever get an error that says that the credentials are invalid or need to be refreshed, you can delete the `token.json` file and reauthenticate
+### Using S3
+S3 can be used to store all of your data in the cloud (first few gigabytes of data are free which personal spend shouldnt ever reach that much data)
+1. Make sure that the following vars are set in your environment:
+```
+AWS_ACCESS_KEY_ID=
+AWS_SECRET_ACCESS_KEY=
+AWS_DEFAULT_REGION=
+```
+2. boto3 will use the vars to connect to s3
+3. More to come
+   
+### Transformations
+1. Modifications
    1. Any data you want to import should go into lib/imports as csv files
-   2. Modify lib/scripts/google_sheets.py to include the id of the google sheet you want to use (which can be found in the url of the sheet), as well as the range of the sheet.  Also change any transformations in that file or lib/scripts/transform.py to whatever you need
-   3. Make sure that all of the correct packages are installed.  (run `pip install -r requirements.txt` when in parent directory)
-   5. Youll have to run the python script first to get a refresh token back, so you can run the script lib/scripts/google_sheets.py to get that.  A file called token.json should appear once that is done.
-7. Connect in Airbyte 
-   1. Go to localhost:8000 and login to airbyte (airbyte, password)
-      - Create a source with google sheets
-      - Input client id, secret, and refresh token that you received
-      - If that doesnt work, you can try created a service account in Google Cloud
-      - Create a destination with Postgres using correct postgres creds.
-      - Create a connection between google sheets and postgres with the sheets you want to sync.
-      - Make a note of the connectionid of the connection just created (can be found in the url) and use that in lib/scripts/airbyte.py for connectionId in the payload
-8. Connect in Superset
-    1. Go to localhost:8088 and login (admin, admin)
-    2. Create a new database connection (can do from settings on the top right)
-    3. Connect with correct postgres creds
-    4. Start creating datasets from tables in postgres (starting with your raw data)
-9. Create Python Container
-    1. Run `docker build -t python_container_image .` while in the top level directory to build your python image
-    2. Run `docker run --rm -it --network host python_container_image` to build the container and run `main.py` at the same time which should trigger the whole pipeline (and delete the container afterward).
-    3. You can run this as well for a container that doesnt delete afterwards `docker run -d --name python_main python_container_image` or `docker start python_main` if it exists already
+   2. You'll have to create your own transformations for your data based on how it comes in raw and how you want to categorize things.
+   3. I recommend starting with just postgres and superset.  You can use the DataSource object in `lib/data/DataSource.py` to import your sources into postgres, and then using sql, transform the raw data to a usable format.
+   4. If you want different categories, look for `lib/postgres/sql/create_categories.sql`.  This holds the custom code to map out your categories based on the descriptions from your data sources.
  
 
 # Future
