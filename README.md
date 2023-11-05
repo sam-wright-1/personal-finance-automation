@@ -37,7 +37,7 @@ ___
 * This project streamlines your financial spending data, subjecting it to a series of transformations before presenting it in an accessible dashboard capable of providing answers to a wide array of financial questions.  All of this is containerized so its easy to use and rebuild if needed.
 
 ### What the dashboard might look like 
-![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/financial_snapshot.png)
+![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/financial_snapshot.jpg)
 
 # Benefit
 #### At the end of this guide you will have created:
