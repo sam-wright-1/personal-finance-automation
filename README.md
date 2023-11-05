@@ -36,14 +36,14 @@ ___
 * Create your own data engineering project using many tools and methods that are highly utilized in practice (Docker, Docker Compose, Superset, Airbyte, object-oriented programming, etc)
 * This project streamlines your financial spending data, subjecting it to a series of transformations before presenting it in an accessible dashboard capable of providing answers to a wide array of financial questions.  All of this is containerized so its easy to use and rebuild if needed.
 
+### What the dashboard might look like 
+![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/financial_snapshot.png)
+
 # Benefit
 #### At the end of this guide you will have created:
 * A dashboard that will help you answer basic questions such as "How much money do I spend on x category on average per month?" or "How much money did I make this year compared to how much money did I spend?"
 * An easy way to update your spend financial data (takes ~ 1 or 2 minutes).
 * Your own basic data engineering project.
-
-### Example financial spend dashboard
-![Finance Arch](https://github.com/sam-wright-1/personal-finance-automation/blob/main/images/financial_snapshot.png)
 
 # Detailed Explainations
 * `lib/imports` holds data that you export from your financial sources.  This data will be transformed and put into whatever storage you choose.
@@ -69,10 +69,10 @@ Using airbyte, you can create pipelines that push data to google sheets or s3, a
    3. `./run-ab-platform.sh`
    4. Go to localhost:8000 in your browser and use username:airbyte, password:password
    5. Youll need to create connections to the systems of your choice manually.
-2. `IMPORTANT` - In order for you python container to access the airbyte container, you have to connect them through an external network.  To do this you will need to do the following:
+2. **_IMPORTANT_** - In order for you python container to access the airbyte container, you have to connect them through an external network.  To do this you will need to do the following:
    1. If the external network doesnt exist, create with `docker network create --driver bridge my_custom_network`
    2. Add this network to the docker container called `airbyte-proxy` in the networks section.  This should allow the python container to access the airbyte container through requests
-4. Using Airbyte with google sheets
+3. Using Airbyte with google sheets
    1. Go to localhost:8000 and login to airbyte (airbyte, password)
       - Create a source with google sheets
       - Input client id, secret, and refresh token that you received from your google cloud project steps (see Using Google Sheets section below)
