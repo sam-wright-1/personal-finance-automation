@@ -27,7 +27,7 @@
       ```
 4. Log into apache superset by going to localhost:8088 in your browser and using `admin` as both the username and password 
 5. Import the test dashboard using the zip file located at `lib/superset/resources/personal_finance_test_dashboard.zip`.
-   1. open superset and go to the "Dashboard" tab. Click on the "Import" button and select the zip file.
+   1. Open superset and go to the "Dashboard" tab. Click on the "Import" button and select the zip file.
    2. Click on the Import button and use `postgres` as the password if it asks for one (default password that allows you to connect to postgres as that is the database connection source)
    3. Go to the dashboard and make sure that data is appearing in the graphs.  You may have to refresh your page or the dashboard.
 
