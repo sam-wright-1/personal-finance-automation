@@ -8,7 +8,7 @@
 # Quickstart
 1. Clone this repo:
    1. `git clone https://github.com/sam-wright-1/personal-finance-automation.git`
-   2. In the repo, run `docker compose up -d`
+   2. Run `docker compose up -d`
    3. Once initialized and containers are running, you can run `docker exec -it finance_python python3 lib/scripts/run_test_pipeline.py` which builds some test data into postgres tables.
 3. Download Apache Superset using Docker Compose (https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/)
    1. Run `git clone https://github.com/apache/superset.git`
