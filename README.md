@@ -112,6 +112,11 @@ AWS_DEFAULT_REGION=
    3. I recommend starting with just postgres and superset.  You can use the DataSource object in `lib/data/DataSource.py` to import your sources into postgres, and then using sql, transform the raw data to a usable format.
    4. If you want different categories, look for `lib/postgres/sql/create_categories.sql`.  This holds the custom code to map out your categories based on the descriptions from your data sources.
    5. The file `lib/scripts/transform.py` shows some python transformations that can be used.  Maybe adding a new method to the object DataSource in `lib/data/datas_source.py` would work easier than using this script
+
+### Tips for Superset
+1. If you right click on any of the bars on any bar chart, you can choose to drill down to the line items within that bar, making it very easy to answer quick questions.
+2. The top right hand corner should have an ellipsis which allows you to refresh the dashboard 
+3. Filters can be incredibly helpful, which is why they are in the test dashboard.  The show up on the left hand side and let you choose to filter by dates, categories, types, etc.
   
 ### Environment Variables
 If you want to overwrite any env variables, create a .env file with any of the following vars included
