@@ -21,8 +21,7 @@
       docker compose -f docker-compose-non-dev.yml pull
       docker compose -f docker-compose-non-dev.yml up
       ```
-   3. Go to localhost:8088 in your browser and use `admin` as the username and `admin` as the password
-4. Log into apache superset using `admin` as the username and `admin` as the password,
+4. Log into apache superset by going to localhost:8088 in your browser and using `admin` as both the username and password (they are default creds that can be changed)
 5. Import the test dashboard using the zip file located at `lib/superset/resources/personal_finance_test_dashboard.zip`.  Go to the dashboard and make sure that data is appearing in the graphs.
 
 # Requirements
