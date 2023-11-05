@@ -36,17 +36,17 @@
    
    PYTHONPATH=
    ```
-   4. In the repo, run `docker compose up -d`
-   5. Once initialized and containers are running, you can run `docker exec -it finance_python python3 lib/scripts/run_test_pipeline.py` which builds some test data into postgres tables.
+   3. In the repo, run `docker compose up -d`
+   4. Once initialized and containers are running, you can run `docker exec -it finance_python python3 lib/scripts/run_test_pipeline.py` which builds some test data into postgres tables.
 3. Download Apache Superset using Docker Compose (https://superset.apache.org/docs/installation/installing-superset-using-docker-compose/)
-   1. `git clone https://github.com/apache/superset.git`
-   2. `cd superset`
-   3. For Mac
+   1. Run `git clone https://github.com/apache/superset.git`
+   2. Run `cd superset`
+   3. For Mac run
       ```
       docker compose -f docker-compose-non-dev.yml pull
       docker compose -f docker-compose-non-dev.yml up
       ```
-      For Windows
+      For Windows run
       ```
       git checkout 3.0.0
       set TAG=3.0.0
@@ -54,7 +54,7 @@
       docker compose -f docker-compose-non-dev.yml up
       ```
 4. Log into apache superset by going to localhost:8088 in your browser and using `admin` as both the username and password 
-5. Import the test dashboard using the zip file located at `lib/superset/resources/personal_finance_test_dashboard.zip`.  Go to the dashboard and make sure that data is appearing in the graphs.
+5. Import the test dashboard using the zip file located at `lib/superset/resources/personal_finance_test_dashboard.zip`.  Go to the dashboard and make sure that data is appearing in the graphs.  You may have to refresh your page or the dashboard.
 
 ___
 
@@ -97,7 +97,10 @@ Using airbyte, you can create pipelines that push data to google sheets or s3, a
    3. `./run-ab-platform.sh`
    4. Go to localhost:8000 in your browser and use username:airbyte, password:password
    5. Youll need to create connections to the systems of your choice manually.
-2. Using Airbyte with google sheets
+2. `IMPORTANT` - In order for you python container to access the airbyte container, you have to connect them through an external network.  To do this you will need to do the following:
+   1. If the external network doesnt exist, create with `docker network create --driver bridge my_custom_network`
+   2. Add this network to the docker container called `airbyte-proxy` in the networks section.  This should allow the python container to access the airbyte container through requests
+4. Using Airbyte with google sheets
    1. Go to localhost:8000 and login to airbyte (airbyte, password)
       - Create a source with google sheets
       - Input client id, secret, and refresh token that you received from your google cloud project steps (see Using Google Sheets section below)
@@ -136,8 +139,11 @@ AWS_DEFAULT_REGION=
    2. You'll have to create your own transformations for your data based on how it comes in raw and how you want to categorize things.
    3. I recommend starting with just postgres and superset.  You can use the DataSource object in `lib/data/DataSource.py` to import your sources into postgres, and then using sql, transform the raw data to a usable format.
    4. If you want different categories, look for `lib/postgres/sql/create_categories.sql`.  This holds the custom code to map out your categories based on the descriptions from your data sources.
+   5. The file `lib/scripts/transform.py` shows some python transformations that can be used.  Maybe adding a new method to the object DataSource in `lib/data/datas_source.py` would work easier than using this script
  
 
 # Future
 * Linting, formatting, unit and integration tests
 * More interchangable parts to accommodate many cases
+* Better way to categorize spend besides like statements (probably some lookup / config tables in postgres that can be modified)
+
