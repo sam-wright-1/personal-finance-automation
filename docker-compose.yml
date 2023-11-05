@@ -10,9 +10,9 @@ services:
     environment:
       AIRBYTE_USER: ${AIRBYTE_USER:-airbyte}
       AIRBYTE_PASSWORD: ${AIRBYTE_PASSWORD:-password}
-      AIRBYTE_HOST: ${AIRBYTE_HOST:-localhost}
+      AIRBYTE_HOST: ${AIRBYTE_HOST:-airbyte-proxy}
       AIRBYTE_PORT: ${AIRBYTE_PORT:-8000}
-      SUPERSET_HOST: ${SUPERSET_HOST:-localhost}
+      SUPERSET_HOST: ${SUPERSET_HOST:-host.docker.internal}
       SUPERSET_USERNAME: ${SUPERSET_USERNAME:-admin}
       SUPERSET_PORT: ${SUPERSET_PORT:-8088}
       SUPERSET_PASSWORD: ${SUPERSET_PASSWORD:-admin}
@@ -25,7 +25,7 @@ services:
       AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
       AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
       AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
-      PYTHONPATH: ${PYTHONPATH}
+      PYTHONPATH: ${PYTHONPATH:-/finance_app/}
     networks:
       - backend
       - my_custom_network
