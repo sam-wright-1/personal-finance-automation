@@ -25,12 +25,10 @@ class Airbyte:
         base64_bytes = base64.b64encode(sample_string_bytes)
         base64_string = base64_bytes.decode("ascii")
 
-        auth = "Basic " + base64_string
-
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
-            "Authorization": auth,
+            "Authorization": "Basic " + base64_string,
         }
 
         return headers

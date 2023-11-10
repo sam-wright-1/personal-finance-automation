@@ -2,6 +2,7 @@
 
 import logging
 import os
+
 import requests
 
 
@@ -137,4 +138,3 @@ class Superset:
     def close(self):
         """Closes a session"""
         self.session.close()
-
