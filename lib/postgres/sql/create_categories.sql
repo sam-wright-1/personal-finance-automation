@@ -15,6 +15,9 @@ select
 
     case
         when
+            UPPER(master.description) like '%PAYROLL%'
+            then 'Salary'
+        when
             UPPER(master.description) like '%AWS.AMAZON.CO%'
             or UPPER(master.description) like '%SPOTIFY%'
             or UPPER(master.description) like '%PRIME VIDEO%'
@@ -135,6 +138,7 @@ select
             or UPPER(master.description) like '%BB DINER%'
             or UPPER(master.description) like '%LUNCHBOX%'
             or UPPER(master.description) like '%HARWARD FARMS SWEET%'
+            or UPPER(master.description) like '%SNACKS%'
             then 'Fast Food'
         when
             UPPER(master.description) like '%COSTCO GAS%'
@@ -207,7 +211,22 @@ select
             or UPPER(master.description) like '%OREM SUMMER SN OREM%'
             or UPPER(master.description) like '%SALT LAKE CITY DEP SALT LAKE%'
             or UPPER(master.description) like '%HOGLE ZOO SALT LAKE%'
+            or UPPER(master.description) like '%GADGET%'
+            or UPPER(master.description) like '%HOME DECOR%'
             then 'Miscellaneous'
+        when
+            UPPER(master.description) like '%ART SUPPLIES%'
+            or UPPER(master.description) like '%MOVIE%'
+            or UPPER(master.description) like '%SNOWBOARD%'
+            or UPPER(master.description) like '%COOKING CLASS%'
+            or UPPER(master.description) like '%CELEBRATION%'
+            or UPPER(master.description) like '%CRAFT SUPPLIES%'
+            or UPPER(master.description) like '%OUTDOOR EQUIPMENT%'
+            or UPPER(master.description) like '%HIKING GEAR%'
+            or UPPER(master.description) like '%ART EXHIB%'
+            or UPPER(master.description) like '%APPLE ORCHARD%'
+            or UPPER(master.description) like '%PUMPKIN PATCH%'
+            then 'Entertainment'
         when
             UPPER(master.description) like '%QUICKQUACK%'
             or UPPER(master.description) like '%AUTO PARTS%'
@@ -330,6 +349,10 @@ select
             or UPPER(master.description) like '%NAILS%'
             or UPPER(master.description) like '%PAUL MITCHELL%'
             or UPPER(master.description) like '%LOREAL%'
+            or UPPER(master.description) like '%SPA DAY%'
+            or UPPER(master.description) like '%SPA AND WELLNESS%'
+            or UPPER(master.description) like '%SPA TREATMENT%'
+            or UPPER(master.description) like '%FITNESS%'
             then 'Health'
         when
             UPPER(master.description) like '%.COM%'
